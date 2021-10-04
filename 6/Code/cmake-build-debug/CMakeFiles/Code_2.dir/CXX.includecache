@@ -1,0 +1,14 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/tux/Documents/Learn/OmSTU/1 semester/AP/Lab works/6/Code/6_2.cpp
+iostream
+-
+cmath
+-
+

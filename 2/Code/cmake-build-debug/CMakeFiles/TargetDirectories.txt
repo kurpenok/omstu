@@ -1,0 +1,4 @@
+/home/tux/Documents/Learn/OmSTU/1 semester/AP/Lab works/2/Code/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/tux/Documents/Learn/OmSTU/1 semester/AP/Lab works/2/Code/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/tux/Documents/Learn/OmSTU/1 semester/AP/Lab works/2/Code/cmake-build-debug/CMakeFiles/Code_2.dir
+/home/tux/Documents/Learn/OmSTU/1 semester/AP/Lab works/2/Code/cmake-build-debug/CMakeFiles/Code_1.dir

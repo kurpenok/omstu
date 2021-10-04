@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/Code_2.dir/5_2.cpp.o -o Code_2 
