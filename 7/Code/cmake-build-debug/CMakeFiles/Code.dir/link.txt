@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/Code.dir/6_1.cpp.o CMakeFiles/Code.dir/6_2.cpp.o CMakeFiles/Code.dir/6_3.cpp.o -o Code 
