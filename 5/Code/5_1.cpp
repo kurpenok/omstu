@@ -20,7 +20,7 @@ int main() {
     std::cout << "+------------+------------+------------+" << std::endl;
     std::cout << "|    Value   |    F(1)    |    F(2)    |" << std::endl;
     std::cout << "|------------+------------+------------|" << std::endl;
-     do {
+    do {
         value += step;
         double result_1 = f_1(value);
         double result_2 = f_2(value);
@@ -30,4 +30,3 @@ int main() {
 
     return 0;
 }
-
