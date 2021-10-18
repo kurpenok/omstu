@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cmath>
 
-using namespace std;
-
 double f_1(double a, double p, double x) {
     return tan(pow(a, 2) + sin(p * x));
 }
@@ -21,29 +19,29 @@ int main() {
     double p = 0.75;
     double dx = a / 4;
 
-    cout << "[+] Function 1: ";
+    std::cout << "[+] Function 1: ";
     x = 0;
     while (x <= 1) {
         printf("(%.2f, %.2f)", x, f_1(a, p, x));
         x += dx;
     }
-    cout << endl;
+    std::cout << std::endl;
 
-    cout << "[+] Function 2: ";
+    std::cout << "[+] Function 2: ";
     x = 1;
     while (x <= 2) {
         printf("(%.2f, %.2f)", x, f_2(a, p, x));
         x += dx;
     }
-    cout << endl;
+    std::cout << std::endl;
 
-    cout << "[+] Function 3: ";
+    std::cout << "[+] Function 3: ";
     x = 2;
     while (x < 3) {
         printf("(%.2f, %.2f)", x, f_3(x));
         x += dx;
     }
-    cout << endl;
+    std::cout << std::endl;
 
     return 0;
 }

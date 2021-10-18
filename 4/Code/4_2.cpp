@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cmath>
 
-using namespace std;
-
 double f_1(double x) {
     double result = pow(M_E, -x) * log(sqrt(x + 1));
     return result;
@@ -19,16 +17,16 @@ int main() {
     double value = 1;
     double step = (stop - start) / steps;
 
-    cout << "+------------+------------+------------+" << endl;
-    cout << "|    Value   |    F(1)    |    F(2)    |" << endl;
-    cout << "|------------+------------+------------|" << endl;
+    std::cout << "+------------+------------+------------+" << std::endl;
+    std::cout << "|    Value   |    F(1)    |    F(2)    |" << std::endl;
+    std::cout << "|------------+------------+------------|" << std::endl;
     while ((int)value != (int)stop) {
         value += step;
         double result_1 = f_1(value);
         double result_2 = f_2(value);
         printf("|    %.2f    |    %.2f    |    %.2f    |\n", value, result_1, result_2);
     }
-    cout << "+------------+------------+------------+" << endl;
+    std::cout << "+------------+------------+------------+" << std::endl;
 
     return 0;
 }
