@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cmath>
 
-using namespace std;
-
 int main() {
     double first_element = 4.0;
     double second_element = 0;
@@ -13,7 +11,7 @@ int main() {
 
     double pi = first_element * second_element;
 
-    cout << "[+] Pi: " << pi << endl;
+    std::cout << "[+] Pi: " << pi << std::endl;
 
     return 0;
 }
