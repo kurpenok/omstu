@@ -25,7 +25,7 @@ int main() {
         double result_1 = f_1(value);
         double result_2 = f_2(value);
         printf("|    %.2f    |    %.2f    |    %.2f    |\n", value, result_1, result_2);
-    } while ((int)value != (int)stop);
+    } while ((int)value != (int)stop + value);
     std::cout << "+------------+------------+------------+" << std::endl;
 
     return 0;
