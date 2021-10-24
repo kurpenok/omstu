@@ -1,17 +1,17 @@
 #include <iostream>
 
 int main() {
-    int width = 4;
-    int height = 7;
+    int row = 7;
+    int column = 4;
 
-    int max;
-    int max_i;
-    int max_j;
-    int matrix[width][height];
+    int max = 0;
+    int max_i = 0;
+    int max_j = 0;
+    int matrix[row][column];
 
-    for (int i = 0; i < width; i++) {
-        for (int j = 0; j < height; j++) {
-            std::cout << "[>] Enter (" << i + 1 << ", " << j + 1 << ") element: ";
+    for (int i = 0; i < row; i++) {
+        std::cout << "[>] Enter " << i + 1 << " line: ";
+        for (int j = 0; j < column; j++) {
             std::cin >> matrix[i][j];
             if (max < matrix[i][j]) {
                 max = matrix[i][j];
@@ -20,19 +20,34 @@ int main() {
             }
         }
     }
+    std::cout << std::endl;
 
-    for (int i = 0; i < width; i++) {
-        for (int j = 0; j < height; j++) {
-            if ((i == 0) && (j == 0)) {
-                printf("%3d", max);
-            } else if (i == 0) {
-                if (j == max_j) {
-                    printf("%3d", matrix[max_i][0]);
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < column; j++) {
+            if (i == 0) {
+                if (j == 0) {
+                    printf("%5d", matrix[max_i][max_j]);
+                } else if (j == max_j) {
+                    printf("%5d", matrix[max_i][0]);
                 } else {
-                    printf("%3d", matrix[max_i][j]);
+                    printf("%5d", matrix[max_i][j]);
+                }
+            } else if (i == max_i) {
+                if (j == 0) {
+                    printf("%5d", matrix[0][max_j]);
+                } else if (j == max_j) {
+                    printf("%5d", matrix[0][0]);
+                } else {
+                    printf("%5d", matrix[0][j]);
                 }
             } else {
-                printf("  0");
+                if (j == 0) {
+                    printf("%5d", matrix[i][max_j]);
+                } else if (j == max_j) {
+                    printf("%5d", matrix[i][0]);
+                } else {
+                    printf("%5d", matrix[i][j]);
+                }
             }
         }
         std::cout << std::endl;
