@@ -2,7 +2,7 @@
 #include <cmath>
 
 double f_1(double x) {
-    double result = pow(M_E, -x) * log(sqrt(x + 1));
+    double result = pow(M_E, -x) * log10(sqrt(x + 1));
     return result;
 }
 
@@ -21,10 +21,10 @@ int main() {
     std::cout << "|    Value   |    F(1)    |    F(2)    |" << std::endl;
     std::cout << "|------------+------------+------------|" << std::endl;
     while ((int)value != (int)stop) {
-        value += step;
         double result_1 = f_1(value);
         double result_2 = f_2(value);
         printf("|    %.2f    |    %.2f    |    %.2f    |\n", value, result_1, result_2);
+        value += step;
     }
     std::cout << "+------------+------------+------------+" << std::endl;
 
