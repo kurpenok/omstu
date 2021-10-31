@@ -1,4 +1,4 @@
-# Install script for directory: /home/tux/Documents/Learn/OmSTU/1 semester/AP/Lab works/3/Code
+# Install script for directory: /home/tux/Documents/Learn/OmSTU/1 Semester/AP/Labs/3/Code
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/tux/Documents/Learn/OmSTU/1 semester/AP/Lab works/3/Code/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/tux/Documents/Learn/OmSTU/1 Semester/AP/Labs/3/Code/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

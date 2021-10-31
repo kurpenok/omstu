@@ -20,15 +20,14 @@ int main() {
     std::cout << "+------------+------------+------------+" << std::endl;
     std::cout << "|    Value   |    F(1)    |    F(2)    |" << std::endl;
     std::cout << "|------------+------------+------------|" << std::endl;
-    for (int i = 0; i < steps; i++) {
-        value += step;
+    for (int i = 0; i <= steps; i++) {
         double result_1 = f_1(value);
         double result_2 = f_2(value);
+        value += step;
 
-        printf("|    %.2f    |    %.2f    |    %.2f    |\n", value, result_1, result_2);
+        printf("|    %.2f    |    %.2f    |    %.2f    |\n", value - step, result_1, result_2);
     }
     std::cout << "+------------+------------+------------+" << std::endl;
 
     return 0;
 }
-
