@@ -17,23 +17,21 @@ int main() {
     double value = 1;
     double step = (stop - start) / steps;
 
-    double matrix[3][(int) steps];
+    double matrix[3][(int) steps + 1];
 
-    matrix[0][0] = value;
-    matrix[1][0] = f_1(value);
-    matrix[2][0] = f_2(value);
-
-    for (int i = 1; i < steps; i++) {
+    int counter = 0;
+    while (value <= stop) {
+        matrix[0][counter] = value;
+        matrix[1][counter] = f_1(value);
+        matrix[2][counter] = f_2(value);
         value += step;
-        matrix[0][i] = value;
-        matrix[1][i] = f_1(value);
-        matrix[2][i] = f_2(value);
+        counter++;
     }
 
     std::cout << "+------------+------------+------------+" << std::endl;
     std::cout << "|    Value   |    F(1)    |    F(2)    |" << std::endl;
     std::cout << "|------------+------------+------------|" << std::endl;
-    for (int i = 0; i < steps; i++) {
+    for (int i = 0; i < steps + 1; i++) {
         printf("|    %.2f    |    %.2f    |    %.2f    |\n", matrix[0][i], matrix[1][i], matrix[1][i]);
     }
     std::cout << "+------------+------------+------------+" << std::endl;
