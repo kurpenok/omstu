@@ -21,11 +21,11 @@ int main() {
     std::cout << "|    Value   |    F(1)    |    F(2)    |" << std::endl;
     std::cout << "|------------+------------+------------|" << std::endl;
     do {
-        value += step;
         double result_1 = f_1(value);
         double result_2 = f_2(value);
         printf("|    %.2f    |    %.2f    |    %.2f    |\n", value, result_1, result_2);
-    } while ((int)value != (int)stop + value);
+        value += step;
+    } while ((int)value != (int)stop);
     std::cout << "+------------+------------+------------+" << std::endl;
 
     return 0;

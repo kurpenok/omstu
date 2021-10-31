@@ -1,47 +1,48 @@
 #include <iostream>
 #include <cmath>
 
-double f_1(double a, double p, double x) {
-    return tan(pow(a, 2) + sin(p * x));
+double f_1(double a, double x) {
+    return tan(pow(a, 2) + sin(M_PI * x));
 }
 
-double f_2(double a, double p, double x) {
-    return a * sin(p - cos(p * x));
+double f_2(double a, double x) {
+    return a * sin(M_PI - cos(M_PI * x));
 }
 
 double f_3(double x) {
     return log10(x);
 }
 
-int main() {
-    double x;
-    double a = 0.5;
-    double p = 0.75;
+void f_cycle(double a) {
+    double x = 0;
     double dx = a / 4;
 
     std::cout << "[+] Function 1: ";
-    x = 0;
     do {
-        printf("(%.2f, %.2f)", x, f_1(a, p, x));
+        printf("(%.2f, %.2f)", x, f_1(a, x));
         x += dx;
-    } while (x < 1);
-        std::cout << std::endl;
+    } while (x <= 1);
+    std::cout << std::endl;
 
     std::cout << "[+] Function 2: ";
-    x = 1;
     do {
-        printf("(%.2f, %.2f)", x, f_2(a, p, x));
+        printf("(%.2f, %.2f)", x, f_2(a, x));
         x += dx;
-    } while (x < 2);
+    } while (x <= 2);
     std::cout << std::endl;
 
     std::cout << "[+] Function 3: ";
-    x = 2;
     do {
         printf("(%.2f, %.2f)", x, f_3(x));
         x += dx;
     } while (x < 3);
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
+}
+
+int main() {
+    f_cycle(0.5);
+    f_cycle(0.75);
+    f_cycle(1);
 
     return 0;
 }
