@@ -37,6 +37,8 @@ double f_cycle(double a) {
         x += dx;
     }
     std::cout << std::endl << std::endl;
+
+    return 0;
 }
 
 int main() {
