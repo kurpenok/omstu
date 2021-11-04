@@ -12,6 +12,8 @@ int main() {
         n++;
     } while (x > 0);
 
+    s -= x * --n;
+
     std::cout << "[+] Sum of numbers: " << s << std::endl;
 
     return 0;
