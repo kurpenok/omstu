@@ -2,7 +2,7 @@
 #include <cmath>
 
 double f_1(double x) {
-    double result = pow(M_E, -x) * log(sqrt(x + 1));
+    double result = pow(M_E, -x) * log10(sqrt(x + 1));
     return result;
 }
 
@@ -17,7 +17,7 @@ int main() {
     double value = 1;
     double step = (stop - start) / steps;
 
-    double matrix[3][(int) steps + 1];
+    double matrix[3][(int)(steps + 1)];
 
     int counter = 0;
     while (value <= stop) {
@@ -32,7 +32,7 @@ int main() {
     std::cout << "|    Value   |    F(1)    |    F(2)    |" << std::endl;
     std::cout << "|------------+------------+------------|" << std::endl;
     for (int i = 0; i < steps + 1; i++) {
-        printf("|    %.2f    |    %.2f    |    %.2f    |\n", matrix[0][i], matrix[1][i], matrix[1][i]);
+        printf("|    %.2f    |    %.2f    |    %.2f    |\n", matrix[0][i], matrix[1][i], matrix[2][i]);
     }
     std::cout << "+------------+------------+------------+" << std::endl;
 
