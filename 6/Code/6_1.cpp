@@ -3,7 +3,7 @@
 int main() {
     int array[12];
     for (int i = 0; i < 12; i++) {
-        std::cout << "[>] Enter " << i + 1<< " element of array: ";
+        std::cout << "[>] Enter " << i + 1 << " element of array: ";
         std::cin >> array[i];
     }
 
