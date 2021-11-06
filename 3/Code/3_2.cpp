@@ -13,7 +13,7 @@ double f_2(double x) {
 int main() {
     double start = 1;
     double stop = 2;
-    double steps = 12;
+    double steps = 11;
     double value = 1;
     double step = (stop - start) / steps;
 
