@@ -8,9 +8,7 @@ void input(int** &matrix, int &row, int &column) {
     matrix = new int* [row];
 
     for (int i = 0; i < row; i++) {
-        for (int j = 0; j < column; j++) {
-            matrix[i] = new int [column];
-        }
+        matrix[i] = new int [column];
     }
 
     for (int i = 0; i < row; i++) {
