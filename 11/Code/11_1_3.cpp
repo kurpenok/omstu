@@ -7,7 +7,7 @@ double f_1(double x);
 
 double f_2(double x);
 
-void calc(double** &matrix, int &row, int &column, double &value, double &step, double &stop);
+void calc(double**& matrix, int& row, int& column, double& value, double& step, double& stop);
 
 int main() {
     double start = 1;
@@ -28,10 +28,8 @@ int main() {
     output << "|    Value   |    F(1)    |    F(2)    |" << '\n';
     output << "|------------+------------+------------|" << '\n';
     for (int i = 0; i < steps + 1; i++) {
-        output << std::setfill(' ') << std::setw(4) << std::fixed << std::setprecision(2) \
-        << "|    " << matrix[0][i] << "    |" \
-        << "    " << matrix[1][i] << "    |" \
-        << "    " << matrix[2][i] << "    |\n";
+        output << std::setw(4) << std::fixed << std::setprecision(2) \
+        << "|    " << matrix[0][i] << "    |    " << matrix[1][i] << "    |    " << matrix[2][i] << "    |\n";
     }
     output << "+------------+------------+------------+" << '\n';
 
@@ -48,7 +46,7 @@ double f_2(double x) {
     return result;
 }
 
-void calc(double** &matrix, int &row, int &column, double &value, double &step, double &stop) {
+void calc(double**& matrix, int& row, int& column, double& value, double& step, double& stop) {
     matrix = new double* [row];
     for (int i = 0; i < row; i++) {
         matrix[i] = new double [column];
