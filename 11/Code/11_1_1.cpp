@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <vector>
 
@@ -109,27 +110,27 @@ void output(int**& matrix, int& row, int& column, int& max, int& max_i, int& max
         for (int j = 0; j < column; ++j) {
             if (i == 0) {
                 if (j == 0) {
-                    output << matrix[max_i][max_j] << " ";
+                    output << std::setw(3) << matrix[max_i][max_j] << " ";
                 } else if (j == max_j) {
-                    output << matrix[max_i][0] << " ";
+                    output << std::setw(3) << matrix[max_i][0] << " ";
                 } else {
-                    output << matrix[max_i][j] << " ";
+                    output << std::setw(3) << matrix[max_i][j] << " ";
                 }
             } else if (i == max_i) {
                 if (j == 0) {
-                    output << matrix[0][max_j] << " ";
+                    output << std::setw(3) << matrix[0][max_j] << " ";
                 } else if (j == max_j) {
-                    output << matrix[0][0] << " ";
+                    output << std::setw(3) << matrix[0][0] << " ";
                 } else {
-                    output << matrix[0][j] << " ";
+                    output << std::setw(3) << matrix[0][j] << " ";
                 }
             } else {
                 if (j == 0) {
-                    output << matrix[i][max_j] << " ";
+                    output << std::setw(3) << matrix[i][max_j] << " ";
                 } else if (j == max_j) {
-                    output << matrix[i][0] << " ";
+                    output << std::setw(3) << matrix[i][0] << " ";
                 } else {
-                    output << matrix[i][j] << " ";
+                    output << std::setw(3) << matrix[i][j] << " ";
                 }
             }
         }
