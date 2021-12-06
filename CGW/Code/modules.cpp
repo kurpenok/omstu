@@ -112,6 +112,8 @@ void print_graph() {
         x -= 0.1;
     }
 
+    x = 2;
+
     printw("\n[+] Equation: x^2 * arctg(x)dx\n\n");
 
     for (int i = -5; i < 6; ++i) {
