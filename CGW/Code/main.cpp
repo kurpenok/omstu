@@ -3,13 +3,14 @@
 #include "modules.h"
 
 int main() {
-    char points[6][30] = {
+    char points[7][40] = {
             "[1] Show author",
             "[2] Solve the equation",
             "[3] Show a table of values",
-            "[4] Calculate the integral",
-            "[5] Build a graph",
-            "[6] Exit"
+            "[4] Calculate the integral (rectangle)",
+            "[5] Calculate the integral (trapezoid)",
+            "[6] Build a graph",
+            "[7] Exit"
     };
 
     int status = 0;
@@ -25,7 +26,7 @@ int main() {
     while (true) {
         clear();
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 8; i++) {
             if (i == status) {
                 attron(COLOR_PAIR(1));
             } else {
@@ -40,11 +41,11 @@ int main() {
                     status--;
                 break;
             case KEY_DOWN:
-                if (status != 5)
+                if (status != 6)
                     status++;
                 break;
             case '\n':
-                switch (status) {
+                switch (static_cast<int> (status)) {
                     case 0:
                         print_author();
                         break;
@@ -55,12 +56,15 @@ int main() {
                         print_table();
                         break;
                     case 3:
-                        print_integral();
+                        print_integral_rectangle();
                         break;
                     case 4:
-                        print_graph();
+                        print_integral_trapezoid();
                         break;
                     case 5:
+                        print_graph();
+                        break;
+                    case 6:
                         endwin();
                         return 0;
                 }
