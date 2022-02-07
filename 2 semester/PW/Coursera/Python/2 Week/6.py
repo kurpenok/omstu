@@ -1,7 +1,7 @@
 x = int(input())
 y = int(input())
 
-if x - 1 >= y - x + 1 and not (x - 1 % y - x + 1):
+if (2 * y + 1 - x) % (y - x + 1) == 0:
     print("YES")
 else:
     print("NO")
