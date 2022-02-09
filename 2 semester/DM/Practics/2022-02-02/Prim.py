@@ -24,7 +24,7 @@ while True:
         break
 
 unified = {1}
-skeleton = {}
+skeleton = []
 
 while len(unified) < count:
     r = get_min(graph, unified)
