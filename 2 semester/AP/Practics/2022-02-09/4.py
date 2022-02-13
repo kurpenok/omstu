@@ -11,5 +11,5 @@ while True:
         print("[-] No")
         break
     number_1, number_2 = number_2, number_1 + number_2
-    count += 1
+    index += 1
 
