@@ -1,4 +1,4 @@
 text = input("[>] Enter text: ")
 
-print("[+] Count: {len(text) // len(str('parrot')}")
+print(f"[+] Count: {len(text) // len(str('parrot'))}")
 
