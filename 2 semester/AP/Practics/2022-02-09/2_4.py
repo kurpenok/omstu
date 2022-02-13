@@ -1,4 +1,4 @@
-n = int(input())
+n = int(input("[>] Enter number: "))
 
 start = 0
 while start < 3:
@@ -8,5 +8,5 @@ while start < 3:
 
     start += 1
 
-print(n)
+print(f"[+] New number: {n}")
 

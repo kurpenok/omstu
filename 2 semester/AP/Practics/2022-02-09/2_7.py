@@ -1,8 +1,8 @@
-homes = list(map(int, input().split("\n")))
+homes = list(map(int, input("[>] Enter height of homes: ").split()))
 
 index = 1
 
-while start < len(homes):
+while index < len(homes):
     if not index:
         print(index + 1)
     if homes[index] >= homes[index - 1]:
@@ -14,4 +14,4 @@ while start < len(homes):
                 break
         if s:
             print(index + 1)
-    
+ 
