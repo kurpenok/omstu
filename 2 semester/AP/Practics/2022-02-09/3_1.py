@@ -1,5 +1,7 @@
 while True:
-    s = input()
+    s = input("[>] Enter string (for exit enter empty string): ")
     if s:
-        print(len(s))
+        print(f"[+] Lenght of string: {len(s)}")
+    else:
+        break
 

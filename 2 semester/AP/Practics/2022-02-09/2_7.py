@@ -1,17 +1,12 @@
-homes = list(map(int, input("[>] Enter height of homes: ").split()))
+temp_house = 0
 
-index = 1
+visible_houses = ""
 
-while index < len(homes):
-    if not index:
-        print(index + 1)
-    if homes[index] >= homes[index - 1]:
-        i = 0
-        s = True
-        while i < index:
-            if homes[i] <= homes[i - 1]:
-                s = False
-                break
-        if s:
-            print(index + 1)
- 
+for i in range(5):
+    current_house = int(input(f"[>] Enter height of {i + 1} house: "))
+    if current_house > temp_house:
+        visible_houses += str(i + 1) + " "
+        temp_house = current_house
+
+print(visible_houses)
+
