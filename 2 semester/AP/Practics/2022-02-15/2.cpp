@@ -20,6 +20,16 @@ std::vector<std::string> split(const std::string &s, char delimiter) {
     return elements;
 }
 
+int count(std::vector<std::string> words, std::string word) {
+    int counter = 0;
+    for (std::string w: words) {
+        if (w == word) {
+            counter++;
+        }
+    }
+    return counter;
+}
+
 int main() {
     std::string text = "word word word1 word2";
     
@@ -29,7 +39,9 @@ int main() {
 
     std::set<std::string> uwords;
     for (std::string word: words) {
-        uwords.insert(word);
+        if (count(words, word) == 1) {
+            uwords.insert(word);
+        }
     }
     
     std::cout << "[+] Ouput string: ";
