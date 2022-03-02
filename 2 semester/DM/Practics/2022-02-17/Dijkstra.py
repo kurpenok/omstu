@@ -1,55 +1,67 @@
-from queue import PriorityQueue
+from collections import defaultdict
 
 
 class Graph:
-    def __init__(self, numvП_of_vertices):
-        self.v = num_of_vertices
-        self.edges = [[-1 for i in range(num_of_vertices)] for j in range(num_of_vertices)]
-        self.visited = []
-    def add_edge(self, u, v, weight):
-        self.edges[u][v] = weight
-        self.edges[v][u] = weight
+    def __init__(self) -> None:
+        self.vertexes = set()
+        self.weights = dict()
+        self.edges = defaultdict(list)
+
+    def addVertex(self, vertex: str) -> None:
+        self.vertexes.add(vertex)
+
+    def addEdge(self, u: str, v: str, weight: int) -> None:
+        self.edges[u].append(v)
+        self.weights[(u, v)] = weight
+
+    def dijkstra(self, start: str) -> None:
+        visited = {start: 0}
+        path = defaultdict(list)
+
+        vertexes = self.vertexes
+
+        while vertexes:
+            minimal = None
+            for vertex in vertexes:
+                if vertex in visited:
+                    if minimal is None:
+                        minimal = vertex
+                    elif visited[vertex] < visited[minimal]:
+                        minimal = vertex
+            if minimal is None:
+                break
+
+            vertexes.remove(minimal)
+            current_weight = visited[minimal]
+
+            for edge in self.edges[minimal]:
+                weight = current_weight + self.weights[(minimal, edge)]
+                if edge not in visited or weight < visited[edge]:
+                    visited[edge] = weight
+                    path[edge].append(minimal)
+
+        print("[+] Dijkstra result (visited vertexes): ", visited)
+        print("[+] Dijkstra result (full path): ", path)
 
 
-def dijkstra(graph, start_vertex):
-    D = {v:float('inf') for v in range(graph.v)}
-    D[start_vertex] = 0
+if __name__ == "__main__":
+    graph = Graph()
 
-    pq = PriorityQueue()
-    pq.put((0, start_vertex))
+    graph.addVertex("a")
+    graph.addVertex("b")
+    graph.addVertex("c")
+    graph.addVertex("d")
+    graph.addVertex("e")
+    graph.addVertex("f")
 
-    while not pq.empty():
-        (dist, current_vertex) = pq.get()
-        graph.visited.append(current_vertex)
+    graph.addEdge("a", "b", 2)
+    graph.addEdge("a", "c", 5)
+    graph.addEdge("b", "c", 6)
+    graph.addEdge("b", "d", 1)
+    graph.addEdge("b", "e", 3)
+    graph.addEdge("c", "f", 8)
+    graph.addEdge("d", "e", 4)
+    graph.addEdge("e", "f", 7)
 
-        for neighbor in range(graph.v):
-            if graph.edges[current_vertex][neighbor] != -1:
-                distance = graph.edges[current_vertex][neighbor]
-                if neighbor not in graph.visited:
-                    old_cost = D[neighbor]
-                    new_cost = D[current_vertex] + distance
-                    if new_cost < old_cost:
-                        pq.put((new_cost, neighbor))
-                        D[neighbor] = new_cost
-    return D
-
-
-g = Graph(9)
-g.add_edge(0, 1, 4)
-g.add_edge(0, 6, 7)
-g.add_edge(1, 6, 11)
-g.add_edge(1, 7, 20)
-g.add_edge(1, 2, 9)
-g.add_edge(2, 3, 6)
-g.add_edge(2, 4, 2)
-g.add_edge(3, 4, 10)
-g.add_edge(3, 5, 5)
-g.add_edge(4, 5, 15)
-g.add_edge(4, 7, 1)
-g.add_edge(4, 8, 5)
-g.add_edge(5, 8, 12)
-g.add_edge(6, 7, 1)
-g.add_edge(7, 8, 3)
-
-print(dijkstra(g, 0))
+    graph.dijkstra("a")
 
