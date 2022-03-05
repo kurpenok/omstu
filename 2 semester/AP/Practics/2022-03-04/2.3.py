@@ -1,16 +1,16 @@
 status = False
-index = 1
-
+line = 1
 for _ in iter(int, 1):
     text = input()
-    index += 1
-    if 'Star' in text or 'star' in text:
-        status = index
-    elif 'END' in text:
+    if not status:
+        line += 1
+    if text == 'END':
         break
+    if 'Star' in text or 'star' in text:
+        status = True
 
 if status:
-    print(status)
+    print(line)
 else:
-    print("No")
+    print('NO')
 

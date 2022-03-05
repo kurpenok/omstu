@@ -1,11 +1,16 @@
 from fractions import Fraction
 
-n = input()
 
-s = n.count('santi')
-k = n.count('kilo')
+metre = input()
 
-result = Fraction(pow(1000, k), pow(100, k))
+k = 0
+s = 0
 
-print(result)
+for symbol in metre:
+    if symbol == 's':
+        s += 1
+    elif symbol == 'k':
+        k += 1
+
+print(Fraction(pow(1000, k) * 100, pow(100, s)))
 

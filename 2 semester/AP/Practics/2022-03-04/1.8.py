@@ -1,17 +1,13 @@
-def count(s: str) -> int:
-    count = 0
-    for symbol in s:
-        if symbol in "aeyuoi":
-            count += 1
-    return count
-
-
 text = input().split()
 
-amount = 0
+vowels = 'aeyuio'
+count = 0
 
 for word in text:
-    amount += count(word) - 1
+    for symbol in word:
+        if symbol in vowels:
+            count += 1
+    count -= 1
 
-print(amount)
+print(count)
 

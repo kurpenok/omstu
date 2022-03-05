@@ -1,10 +1,10 @@
 n = int(input())
 
-names = []
+names = ''
 
 for i in range(n):
-    names.append(input())
+    name = input()
+    names += f'{i + 1} {name}\n'
 
-for i in range(n):
-    print(i + 1, names[i])
+print(names)
 

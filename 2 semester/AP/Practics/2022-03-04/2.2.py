@@ -2,13 +2,13 @@ status = False
 
 for _ in iter(int, 1):
     text = input()
+    if text == 'END':
+        break
     if 'Star' in text or 'star' in text:
         status = True
-    elif 'END' in text:
-        break
 
 if status:
-    print("Go")
+    print('YES')
 else:
-    print("No")
+    print('NO')
 

@@ -1,11 +1,11 @@
 symbol = input()
-n = int(input())
+count - int(input())
 
-count = 0
+c = 0
 
-for i in range(n):
+for i in range(count):
     if input() == symbol:
-        count += 1
+        c += 1
 
-print(count)
+print(c)
 

@@ -2,8 +2,8 @@ start = int(input())
 step = int(input())
 stop = int(input())
 
-for i in range(start, stop - step, -step):
-    print(f"[+] Height: {i}")
+for height in range(start, stop - step + 1, -step):
+    print(f'[+] Height: {height}')
 
-print("[+] Glissade")
+print('[+] Glissade')
 
