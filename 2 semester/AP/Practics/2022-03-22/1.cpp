@@ -37,34 +37,91 @@ class Student: public Human {
         int level;
 };
 
-void find(std::vector<Student> students, std::string date, int school);
+void find_date(std::vector<Student>& students);
+
+void find_school(std::vector<Student>& students);
+
+void add(std::vector<Student>& students);
+
+void remove(std::vector<Student>& students);
 
 int main() {
     std::vector<Student> students;
-    
-    std::string fio, date;
-    int school, level;
+
+    int status = 0;
+
+    std::cout << "[1] Add\n[2] Remove\n[3] Find by date\n[4] Find by school\n[5] Exit\n" << std::endl;
 
     while (true) {
-        std::cout << "[>] Enter parameters: ";
-        std::cin >> fio >> date >> school >> level;
+        std::cout << "[>] Enter status: ";
+        std::cin >> status;
 
-        Student student(fio, date, school, level);
-        students.push_back(student);
-
-        break;
+        switch (status) {
+            case 1:
+                add(students);
+                break;
+            case 2:
+                remove(students);
+                break;
+            case 3:
+                find_date(students);
+                break;
+            case 4:
+                find_school(students);
+                break;
+            case 5:
+                return 0;
+        }
     }
-
-    find(students, "26.08.2003", 166);
 
     return 0;
 }
 
-void find(std::vector<Student> students, std::string date, int school) {
+void add(std::vector<Student>& students) {
+    std::string fio, date;
+    int school, level;
+
+    std::cout << "[>] Enter parameters (fio, date, school, level): ";
+    std::cin >> fio >> date >> school >> level;
+
+    Student student(fio, date, school, level);
+    students.push_back(student);
+
+    std::cout << "[+] Student added" << std::endl << std::endl;
+}
+
+void remove(std::vector<Student>& students) {
+    students.pop_back();
+    std::cout << "[+] Student removed" << std::endl << std::endl;
+}
+
+void find_date(std::vector<Student>& students) {
+    std::string date;
+
+    std::cout << "[>] Enter date: ";
+    std::cin >> date;
+
     for (int i = 0; i < students.size(); i++) {
-        if (students[i].school == school && students[i].get_date() == date) {
+        if (students[i].get_date() == date) {
             std::cout << students[i].get_fio() << std::endl;
         }
     }
+
+    std::cout << "[+] Find finished" << std::endl << std::endl;
+}
+
+void find_school(std::vector<Student>& students) {
+    int school;
+
+    std::cout << "[>] Enter school: ";
+    std::cin >> school;
+
+    for (int i = 0; i < students.size(); i++) {
+        if (students[i].school == school) {
+            std::cout << students[i].get_fio() << std::endl;
+        }
+    }
+
+    std::cout << "[+] Find finished" << std::endl << std::endl;
 }
 
