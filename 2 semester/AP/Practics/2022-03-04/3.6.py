@@ -1,11 +1,16 @@
 n = int(input())
 
-numbers = [2, 3, 4, 5, 6, 8, 9, 10, 12, 15]
+numbers = [2, 3, 5]
 
-for i in range(16, n + 3):
-    for number in numbers[::-1]:
-        if i % number in numbers:
-            pass
+for i in range(n):
+    x = numbers.pop(0)
+    
+    numbers.append(2 * x)
+    numbers.append(3 * x)
+    numbers.append(5 * x)
 
-print(numbers[n])
+    numbers.sort()
+    numbers = list(set(numbers))
+
+print(x)
 
