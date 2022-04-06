@@ -1,5 +1,5 @@
 symbol = input()
-count - int(input())
+count = int(input())
 
 c = 0
 
