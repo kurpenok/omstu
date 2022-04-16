@@ -2,8 +2,8 @@
 
 #include <cstddef>
 #include <iostream>
-#include "circular_buffer.h"
-#include "page.h"
+#include "CircularBuffer.h"
+#include "Page.h"
 
 template <class T>
 class Deque {
