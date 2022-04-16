@@ -9,6 +9,7 @@ class SetIterator;
 template <typename T>
 class Set {
 private:
+    size_t size;
 
 public:
     Set();
@@ -29,38 +30,64 @@ public:
 };
 
 template <class T>
-Set<T>::Set() {}
+Set<T>::Set() {
+    size = 0;
+}
 
 template <class T>
-Set<T>::Set(const Set<T>& other) {}
+Set<T>::Set(const Set<T>& other) {
+    size = other.size;
+}
 
 template <class T>
-Set<T>& Set<T>::operator=(const Set<T>& other) {}
+Set<T>& Set<T>::operator=(const Set<T>& other) {
+    size = other.size;
+}
 
 template <class T>
-Set<T>::~Set<T>() {}
+Set<T>::~Set<T>() {
+    size = 0;
+}
 
 template <class T>
-bool Set<T>::Empty() const {}
+bool Set<T>::Empty() const {
+    return size == 0;
+}
 
 template <class T>
-size_t Set<T>::Size() const {}
+size_t Set<T>::Size() const {
+    return size;
+}
 
 template <class T>
-void Set<T>::Clear() {}
+void Set<T>::Clear() {
+    size = 0;
+}
 
 template <class T>
-Set<T>& Set<T>::Insert() {}
+Set<T>& Set<T>::Insert() {
+    size++;
+}
 
 template <class T>
-void Set<T>::Erase() {}
+void Set<T>::Erase() {
+    size--;
+}
 
 template <class T>
-void  Set<T>::Swap(Set<T>& other) {}
+void  Set<T>::Swap(Set<T>& other) {
+    size_t temp = size;
+    size = other.size;
+    other.size = temp;
+}
 
 template <class T>
-Set<T>& Set<T>::operator+(Set<T> &other) {}
+Set<T>& Set<T>::operator+(Set<T> &other) {
+    return *this;
+}
 
 template <class T>
-Set<T>& Set<T>::operator-(Set<T> &other) {}
+Set<T>& Set<T>::operator-(Set<T> &other) {
+    return *this;
+}
 
