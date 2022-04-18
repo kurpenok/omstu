@@ -1,4 +1,6 @@
-enum RBTColor {BLACK, KEY};
+#include <iomanip>
+
+enum RBTColor {BLACK, RED};
 
 template <class Key>
 struct RBTNode {
@@ -7,8 +9,11 @@ struct RBTNode {
     RBTNode<Key>* left;
     RBTNode<Key>* right;
     RBTNode<Key>* parent;
-    
+
     RBTNode(Key k, RBTColor c, RBTNode* p, RBTNode* l, RBTNode* r):
         key(k), color(c), parent(p), left(l), right(r) {}
 };
+
+template <class T>
+class RBTree {};
 
