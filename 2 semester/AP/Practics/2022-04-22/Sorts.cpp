@@ -1,9 +1,5 @@
-#include <cstddef>
-#include <cstdlib>
 #include <iostream>
-#include <type_traits>
 #include <vector>
-#include <algorithm>
 
 void bubbleSort(std::vector<int>& array);
 
@@ -11,11 +7,30 @@ void combSort(std::vector<int>& array);
 
 void shakeSort(std::vector<int>& array);
 
-void merge(std::vector<int>& a, std::vector<int>& b);
-void quickSort(std::vector<int>& array);
+int partition(std::vector<int>& array, int start, int end);
+void quickSort(std::vector<int>& array, int start, int end);
 
 int main() {
+    int count;
+    std::cout << "[>] Enter count of elements: ";
+    std::cin >> count;
+
     std::vector<int> array;
+    
+    std::cout << "[>] Enter elements: ";
+    int temp;
+    for (int i = 0; i < count; ++i) {
+        std::cin >> temp;
+        array.push_back(temp);
+    }
+
+    quickSort(array, 0, count - 1);
+
+    std::cout << "[+] Sorted array: ";
+    for (auto i: array) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
 }
 
 void bubbleSort(std::vector<int>& array) {
@@ -71,5 +86,46 @@ void shakeSort(std::vector<int>& array) {
     } while (left < right);
 }
 
-void quickSort(std::vector<int>& array) {}
+int partition(std::vector<int>& array, int start, int end) {
+    int pivot = array[start];
+    int count = 0;
+
+    for (int i = start + 1; i <= end; ++i) {
+        if (array[i] <= pivot) {
+            ++count;
+        }
+    }
+
+    int pivotIndex = start + count;
+    std::swap(array[pivotIndex], array[start]);
+    
+    int i = start;
+    int j = end;
+    while (i < pivotIndex && j > pivotIndex) {
+        while (array[i] <= pivot) {
+            ++i;
+        }
+        while (array[j] > pivot) {
+            --j;
+        }
+        if (i < pivotIndex && j > pivotIndex) {
+            std::swap(array[i], array[j]);
+            ++i;
+            --j;
+        }
+    }
+
+    return pivotIndex;
+}
+
+void quickSort(std::vector<int>& array, int start, int end) {
+    if (start >= end) {
+        return;
+    }
+
+    int index = partition(array, start, end);
+
+    quickSort(array, start, index - 1);
+    quickSort(array, index + 1, end);
+}
 
