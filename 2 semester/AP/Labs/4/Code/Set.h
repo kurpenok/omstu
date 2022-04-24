@@ -79,3 +79,15 @@ bool Set<Key, Compare>::Find(const Key &key) {
     return rbtree_.search(key);
 }
 
+template <class Key, class Compare>
+Set<Key, Compare>& operator+(Set<Key>& set, Key element) {
+    set.Insert(element);
+    return set;
+}
+
+template<class Key, class Compare>
+Set<Key, Compare>& operator+=(Set<Key>& set, Key element) {
+    set.Insert(element);
+    return set;
+}
+
