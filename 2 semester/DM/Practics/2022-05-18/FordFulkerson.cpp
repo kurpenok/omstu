@@ -62,7 +62,7 @@ void minCut(int graph[V][V], int s, int t) {
             rGraph[v][u] += path_flow;
         }
 
-        std::cout << "[+] Pathflow:" << path_flow << std::endl;
+        std::cout << "[+] Pathflow: " << path_flow << std::endl;
         max_flow += path_flow;
     }
 
@@ -85,11 +85,11 @@ void minCut(int graph[V][V], int s, int t) {
 
 int main() {
     int graph[V][V] = {
-        {0, 16, 13, 0, 0, 0},
-        {0, 0, 10, 12, 0, 0},
-        {0, 4, 0, 0, 14, 0},
-        {0, 0, 9, 0, 0, 20},
-        {0, 0, 0, 7, 0, 4},
+        {0, 53, 87, 0, 15, 0},
+        {0, 0, 13, 22, 44, 72},
+        {0, 0, 0, 17, 31, 14},
+        {0, 0, 0, 0, 16, 0},
+        {0, 0, 0, 7, 0, 84},
         {0, 0, 0, 0, 0, 0}
     };
 
