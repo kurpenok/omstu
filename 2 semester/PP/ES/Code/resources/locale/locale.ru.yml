@@ -1,0 +1,18 @@
+ru:
+    title: "Экспертная система"
+
+    registration: "Регистрация"
+    surname: "Фамилия"
+    name: "Имя"
+    patronymic: "Отчество"
+    none: ""
+    success: "Успешно сохранено"
+    save_user_info: "Сохранить"
+
+    questions: "Вопросы"
+    yes: "Да"
+    rather_yes: "Скорее да"
+    ignorance: "Не знаю"
+    rather_no: "Скорее нет"
+    no: "Нет"
+
