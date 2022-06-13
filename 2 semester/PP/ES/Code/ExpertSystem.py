@@ -37,6 +37,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_main_window):
         self.q = 0
 
         self.answers = []
+        self.answer = "На пересдачу"
         self.push_button_yes.clicked.connect(lambda: save_answer.save(self, 0, self.q + 1))
         self.push_button_rather_yes.clicked.connect(lambda: save_answer.save(self, 1, self.q + 1))
         self.push_button_ignorance.clicked.connect(lambda: save_answer.save(self, 2, self.q + 1))
