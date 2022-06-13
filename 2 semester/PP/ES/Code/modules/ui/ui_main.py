@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'ui_main.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.15.4
+## Created by: Qt User Interface Compiler version 5.15.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -137,6 +137,25 @@ class Ui_main_window(object):
         self.status_bar.setObjectName(u"status_bar")
         main_window.setStatusBar(self.status_bar)
 
+        self.retranslateUi(main_window)
+
         QMetaObject.connectSlotsByName(main_window)
     # setupUi
+
+    def retranslateUi(self, main_window):
+        main_window.setWindowTitle(QCoreApplication.translate("main_window", u"\u042d\u043a\u0441\u043f\u0435\u0440\u0442\u043d\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430", None))
+        self.group_box_registration.setTitle(QCoreApplication.translate("main_window", u"\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f", None))
+        self.label_surname.setText(QCoreApplication.translate("main_window", u"\u0424\u0430\u043c\u0438\u043b\u0438\u044f", None))
+        self.line_edit_surname.setText("")
+        self.label_name.setText(QCoreApplication.translate("main_window", u"\u0418\u043c\u044f", None))
+        self.label_patronymic.setText(QCoreApplication.translate("main_window", u"\u041e\u0442\u0447\u0435\u0441\u0442\u0432\u043e", None))
+        self.label_save_status.setText(QCoreApplication.translate("main_window", u"\u0423\u0441\u043f\u0435\u0448\u043d\u043e \u0441\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u043e", None))
+        self.push_button_save_user_info.setText(QCoreApplication.translate("main_window", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
+        self.group_box_questions.setTitle(QCoreApplication.translate("main_window", u"\u0412\u043e\u043f\u0440\u043e\u0441\u044b", None))
+        self.push_button_yes.setText(QCoreApplication.translate("main_window", u"\u0414\u0430", None))
+        self.push_button_rather_yes.setText(QCoreApplication.translate("main_window", u"\u0421\u043a\u043e\u0440\u0435\u0435 \u0434\u0430", None))
+        self.push_button_ignorance.setText(QCoreApplication.translate("main_window", u"\u041d\u0435 \u0437\u043d\u0430\u044e", None))
+        self.push_button_rather_no.setText(QCoreApplication.translate("main_window", u"\u0421\u043a\u043e\u0440\u0435\u0435 \u043d\u0435\u0442", None))
+        self.push_button_no.setText(QCoreApplication.translate("main_window", u"\u041d\u0435\u0442", None))
+    # retranslateUi
 

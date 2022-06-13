@@ -1,7 +1,10 @@
 import i18n
 
 
-def setup(self) -> None:
+def setup(self):
+    i18n.load_path.append("resources/locale/")
+    i18n.set("locale", "ru")
+
     self.setWindowTitle(i18n.t("locale.title"))
 
     self.group_box_registration.setTitle(i18n.t("locale.registration"))
