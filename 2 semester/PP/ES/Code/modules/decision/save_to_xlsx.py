@@ -6,14 +6,18 @@ import pylightxl
 def save(self) -> None:
     wb = os.getcwd()
     line = 1
+
+    if not os.path.exists(f"{wb}/reports/"):
+        os.mkdir(f"{wb}/reports/")
     
-    if os.path.exists(f"{wb}/Report.xlsx"):
-        db = pylightxl.readxl("Report.xlsx")
+    if os.path.exists(f"{wb}/reports/Report.xlsx"):
+        db = pylightxl.readxl("reports/Report.xlsx")
 
         while True:
-            output = db.ws(ws="Лист1").index(row=line, col=0)
+            output = db.ws(ws="Лист1").index(row=line, col=1)
             if not output:
                 break
+            line += 1
     else:
         db = pylightxl.Database()
         db.add_ws(ws="Лист1")
@@ -23,5 +27,5 @@ def save(self) -> None:
     db.ws(ws="Лист1").update_index(row=line, col=3, val=self.patronymic)
     db.ws(ws="Лист1").update_index(row=line, col=4, val=self.answer)
     
-    pylightxl.writexl(db=db, fn="Report.xlsx")
+    pylightxl.writexl(db=db, fn="reports/Report.xlsx")
 
