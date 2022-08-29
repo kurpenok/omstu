@@ -1,15 +1,17 @@
 # Solving the tasks of the OmSTU training course
 
-### Attention! Solutions to tasks can sometimes be incomplete (especially those that were written closer to session).
-### We also recommend that you do not copy the algorithm code, but rewrite it manually - this way the meaning is better understood.
 
-### Good luck and may God protect you!
+#### Attention! Solutions to tasks can sometimes be incomplete (especially those that were written closer to session).
 
-#### General information
+#### We also recommend that you do not copy the algorithm code, but rewrite it manually - this way the meaning is better understood.
+
+#### Good luck and may God protect you!
+
+## General information
 
 This repository is intended for documenting solutions to problems from the training course of PMiFI FITiKS OmSTU.
 
-#### Content
+## Content
 
 #### 1 semester
 
@@ -38,7 +40,7 @@ This repository is intended for documenting solutions to problems from the train
 		- [Dijkstra 's algorithm](https://github.com/kurpenok/OmSTU/tree/main/2%20semester/Discrete%20mathematics/Practics/2022-02-17 "Dijkstra 's algorithm")
 		- [The Ford-Bellman algorithm](https://github.com/kurpenok/OmSTU/tree/main/2%20semester/Discrete%20mathematics/Practics/2022-03-09 "The Ford-Bellman algorithm")
 		- [Floyd 's Algorithm](https://github.com/kurpenok/OmSTU/tree/main/2%20semester/Discrete%20mathematics/Practics/2022-03-16 "Floyd 's Algorithm")
-		- [Floyd's algorithm with memorizing paths](https://github.com/kurpenok/OmSTU/tree/main/2%20semester/Discrete%20mathematics/Practics/2022-03-30 ""Floyd's algorithm with memorizing paths)
+		- [Floyd's algorithm with memorizing paths](https://github.com/kurpenok/OmSTU/tree/main/2%20semester/Discrete%20mathematics/Practics/2022-03-30 "Floyd's algorithm with memorizing paths")
 		- [Search for connectivity components](https://github.com/kurpenok/OmSTU/tree/main/2%20semester/Discrete%20mathematics/Practics/2022-04-13 "Search for connectivity components")
 		- [The method of branches and boundaries](https://github.com/kurpenok/OmSTU/tree/main/2%20semester/Discrete%20mathematics/Practics/2022-04-20 "The method of branches and boundaries")
 		- [The Ford-Fulkerson algorithm](https://github.com/kurpenok/OmSTU/tree/main/2%20semester/Discrete%20mathematics/Practics/2022-05-18 "The Ford-Fulkerson algorithm")
@@ -54,3 +56,11 @@ This repository is intended for documenting solutions to problems from the train
 #### 3 semester
 
 To be continued...
+
+## Author
+
+[Kurpenov Kuat](https://github.com/kurpenok "Kurpenov Kuat") (Telegram/VK: @kurpenok)
+
+## License
+
+MIT
