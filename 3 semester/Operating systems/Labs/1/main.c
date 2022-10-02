@@ -14,9 +14,5 @@ int main(void) {
 
     write(1, buffer, cb);
 
-
-    printf("sdfsdf");
-    scan(&asdf);
-
     return 0;
 }
