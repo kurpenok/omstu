@@ -2,8 +2,11 @@
 
 import math
 
+import numpy as np
+
 from scipy.misc import derivative
 from scipy.integrate import quad
+from scipy.optimize import minimize, rosen, rosen_der
 from sympy import symbols, diff, integrate, sin, cos
 
 
@@ -32,8 +35,8 @@ def main() -> None:
 
     print("[+] Undefined integral:", integrate(sin(2 * x) / cos(x), x))
 
-    print("[+] Optimal value:", )
-    print("[+] Optimal solution:", )
+    print("[+] Optimal value:", minimize(rosen, [1.3, 0.7, 0.8, 1.9, 1.2], method="Nelder-Mead", tol=1e-6))
+    # print("[+] Optimal solution:", )
 
 
 if __name__ == "__main__":
