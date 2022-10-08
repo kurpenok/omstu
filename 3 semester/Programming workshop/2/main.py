@@ -6,15 +6,20 @@ import numpy as np
 
 from scipy.misc import derivative
 from scipy.integrate import quad
-from scipy.optimize import minimize, rosen, rosen_der
+from scipy.optimize import Bounds, LinearConstraint, minimize
+
 from sympy import symbols, diff, integrate, sin, cos
 
 
-def f(x):
+def f(x) -> float:
     return math.sin(2 * x) / math.cos(x)
 
 
-def integrand(x):
+def g(x) -> float:
+    return (x[0] - 3)**2 + (x[1] - 8)**2
+
+
+def integrand(x) -> None:
     return sin(2 * x) / cos(x)
 
 
@@ -35,8 +40,17 @@ def main() -> None:
 
     print("[+] Undefined integral:", integrate(sin(2 * x) / cos(x), x))
 
-    print("[+] Optimal value:", minimize(rosen, [1.3, 0.7, 0.8, 1.9, 1.2], method="Nelder-Mead", tol=1e-6))
-    # print("[+] Optimal solution:", )
+    x0 = np.array([1, 1])
+    bounds = Bounds(lb=0, ub=np.inf)
+    lc = LinearConstraint([[-2, 1], [3, 4]], lb=[2, -6], ub=[2, -6])
+    print("[+] Optimazed values:", minimize(
+        fun=g,
+        x0=x0,
+        method="trust-constr",
+        bounds=bounds,
+        constraints=lc,
+        tol=1e-3
+        ).x)
 
 
 if __name__ == "__main__":
