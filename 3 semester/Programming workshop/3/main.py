@@ -15,9 +15,13 @@ def main() -> None:
         [1, 2, 3, 4],
     ])
 
-    print("[+] LU-decomposition:", lu(a))
+    df = lu(a)
+    l = df[0]
+    u = df[1]
+    print("[+] LU-decomposition:", l, u)
 
-    print("[+] Determinant:", det(a))
+    print("[+] Determinant L:", det(l))
+    print("[+] Determinant U:", det(u))
 
     sample_norm = norm.rvs(size=100)
     print("[+] Normal sample:", sample_norm)
