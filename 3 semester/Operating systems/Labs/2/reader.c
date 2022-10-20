@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
 
     int firstHandle = open(argv[1], O_RDONLY);
     int secondHandle = dup(firstHandle);
-    int thirdHandle = dup(firstHandle);
+    int thirdHandle = open(argv[1], O_RDONLY);
 
     printf("[+] First handle: %d\n", firstHandle);
     printf("[+] Second handle: %d\n", secondHandle);
