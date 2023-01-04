@@ -1,0 +1,309 @@
+\documentclass[14pt, a4paper]{article}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+
+\usepackage{amsmath}
+
+\begin{document}
+    \thispagestyle{empty}
+
+    \begin{center}
+        Министерство науки и высшего образования Российской Федерации
+
+        Федеральное государственно автономное образовательное учреждение высшего образования
+
+        <<Омский государственный технический университет>>
+
+        \vspace{1cm}
+        Факультет информационных технологий и компьютерных систем
+
+        Кафедра <<Прикладная математика и фундаметральная информатика>>
+
+        \vspace{3cm}
+        \textbf{Индивидуальная работа}
+
+        по дисциплине <<Математическая логика и теория алгоритмов>>
+    \end{center}
+    
+    \vspace{3cm}
+    \begin{flushright}    
+        \begin{tabular}{ r r }
+            Студента & Курпенова Куата Ибраимовича \\
+            \cline{2-2}
+            & \tiny{фамилия, имя, отчество полностью} \\
+
+            Курс & 2, группа ФИТ-212 \\
+            \cline{2-2}
+            Направление & 02.03.02 Прикладная математика \\
+            \cline{2-2}
+            & и фундаментальная информатика \\
+            \cline{2-2}
+            & \tiny{код, наименование} \\
+            
+            Руководитель & доц., канд. физ.-мат. наук \\
+            \cline{2-2}
+            & \tiny{должность, ученая степень, звание} \\
+            & Белим С. Ю. \\
+            \cline{2-2}
+            & \tiny{фамилия, инициалы} \\
+            
+            Выполнил & \\
+            \cline{2-2}
+            & \tiny{дата, подпись студента} \\
+            
+        \end{tabular}
+    \end{flushright}
+    
+    \vspace*{\fill}
+    \begin{center}
+        Омск 2022
+    \end{center}
+
+    \newpage
+
+    \section*{Задание 1}
+    Используя метод резолюций с унификацией предикатных выражений для заданного множества гипотез $\{F_1, F_2, \dots, F_n\}$ и утверждения $B$, доказать справедливость $F_1, F_2, \dots, F_n \vdash B$.
+
+    \subsection*{Решение}
+
+    \[ F_1 = \forall{x}(K(x) \& \forall{y}(R(y) \rightarrow U(x, y))) \]
+    \[ F_1 = \forall{x}\forall{y}(K(x) \& (\neg R(y) \vee U(x, y))) \]
+    \[ F_1 = \forall{x}\forall{y}((K(x) \& \neg R(y)) \vee (K(x) \& U(x, y))) \]
+
+    \[ F_2 = \forall{x}(K(x) \& \forall{y}(B(y) \rightarrow \neg U(x, y))) \]
+    \[ F_2 = \forall{x}\forall{y}(K(x) \& (\neg B(y) \vee \neg U(x, y))) \]
+    \[ F_2 = \forall{x}\forall{y}((K(x) \& \neg B(y)) \vee (K(x) \& \neg U(x, y))) \]
+
+    \[ B = \forall{y}(R(y) \rightarrow \neg B(y)) = \forall{y}(\neg R(y) \vee \neg B(y))\]
+    \[ \neg B = \neg (\forall{y}(\neg R(y) \vee \neg B(y))) = \exists{y}(R(y) \& B(y)) = R(c) \& B(c) \]
+
+    \begin{align*}
+        K: \{
+            & (K(x) \& \neg R(y)) \vee (K(x) \& U(x, y)), \\
+            & (K(x) \& \neg B(y)) \vee (K(x) \& \neg U(x, y)), \\
+            & R(c), B(c) \} \\
+    \end{align*}
+
+    \[ res((K(x) \& \neg R(y)) \vee (K(x) \& U(x, y)), R(c)) = K(x) \& R(c) \& U(x, y) \]
+    \[ res(K(x) \& R(c) \& U(x, y), (K(x) \& \neg B(y)) \vee (K(x) \& \neg U(x, y))) = K(x) \& R(c) \& \neg B(y) \]
+    \[ res(K(x) \& R(c) \& \neg B(y), B(c)) = False\]
+
+    \subsection*{Ответ}
+    Справедливость доказана.
+
+    \vspace{1cm}
+    \section*{Задание 2}
+    Дана машина Тьюринга с внешним алфавитом $A = \{a_0, 1\}$, алфавитом внутренних состояний $Q = \{q_0, q_1, q_2, q_3, q_4, q_5, q_6, q_7, R, L, S\}$ и со следующей программой:
+
+    \begin{center}
+        \begin{tabular}{ | c | c | c | c | c | c | c | c | } 
+            \hline
+            & $q_1$ & $q_2$ & $q_3$ & $q_4$ & $q_5$ & $q_6$ & $q_7$ \\
+            \hline
+            $a_0$ & $q_4 a_0 R$ & $q_6 a_0 R$ & $q_6 a_0 R$ & $q_0 1 R$ & $q_4 a_0 R$ & $q_0 a_0 S$ & $q_6 a_0 R$ \\
+            \hline
+            $1$ & $q_2 1 L$ & $q_3 1 L$ & $q_1 1 L$ & $q_5 a_0 S$ & $q_5 a_0 S$ & $q_7 a_0 S$ & $q_7 a_0 R$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    Стартовое состояние:
+    
+    \begin{center}
+        \begin{tabular}{ | c c c c c | }
+            \hline
+            1 & 1 & 1 & 1 & 1 \\
+            & & & & $q_1$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \subsection*{Решение}
+
+    \begin{center}
+        \begin{tabular}{ | c c c c c | }
+            \hline
+            1 & 1 & 1 & 1 & 1 \\
+            & & & & $q_1$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c c c c | }
+            \hline
+            1 & 1 & 1 & 1 & 1 \\
+            & & & $q_2$ & \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c c c c | }
+            \hline
+            1 & 1 & 1 & 1 & 1 \\
+            & & $q_3$ & & \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c c c c | }
+            \hline
+            1 & 1 & 1 & 1 & 1 \\
+            & $q_1$ & & & \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c c c c | }
+            \hline
+            1 & 1 & 1 & 1 & 1 \\
+            $q_2$ & & & & \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c c c c c | }
+            \hline
+            $a_0$ & 1 & 1 & 1 & 1 & 1 \\
+            $q_3$ & & & & & \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c c c c | }
+            \hline
+            1 & 1 & 1 & 1 & 1 \\
+            $q_6$ & & & & \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c c c c | }
+            \hline
+            $a_0$ & 1 & 1 & 1 & 1 \\
+            $q_7$ & & & & \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c c c c | }
+            \hline
+            $a_0$ & 1 & 1 & 1 & 1 \\
+            & $q_6$ & & &  \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c c c | }
+            \hline
+            $a_0$ & 1 & 1 & 1 \\
+            $q_7$ & & & \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c c c | }
+            \hline
+            $a_0$ & 1 & 1 & 1 \\
+            & $q_6$ & &   \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c c | }
+            \hline
+            $a_0$ & 1 & 1 \\
+            $q_7$ & & \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c c | }
+            \hline
+            $a_0$ & 1 & 1 \\
+            & $q_6$ & \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c | }
+            \hline
+            $a_0$ & 1 \\
+            $q_7$ & \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c | }
+            \hline
+            $a_0$ & 1 \\
+            & $q_6$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c | }
+            \hline
+            $a_0$ \\
+            $q_7$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c c | }
+            \hline
+            $a_0$ & $a_0$ \\
+            & $q_6$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    \begin{center}
+        \begin{tabular}{ | c | }
+            \hline
+            $a_0$ \\
+            $q_0$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \subsection*{Ответ}
+    Данная программа удаляет число с ленты.
+
+    \vspace{1cm}
+    \section*{Задание 3}
+    Дана машина Тьюринга с внешним алфавитом $A = \{a_0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$. На ленте запись неотрицательного целого числа в десятичной системе. Стартовая конфигурация - головка под первой цифрой числа. Требуется получить на ленте запись числа, которое на 1 больше заданного числа (состояний головки не более трёх).
+
+    \subsection*{Решение}
+    
+    \begin{center}
+        \begin{tabular}{ | c | c | c | c | c | c | c | c | c | c | c | c | } 
+            \hline
+            & $a_0$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+            \hline
+            $q_1$ & $q_2 a_0 L$ & $q_1 0 R$ & $q_1 1 R$ & $q_1 2 R$ & $q_1 3 R$ & $q_1 4 R$ & $q_1 5 R$ & $q_1 6 R$ & $q_1 7 R$ & $q_1 8 R$ & $q_1 9 R$ \\
+            \hline
+            $q_2$ & $q_0 1 S$ & $q_0 1 S$ & $q_0 2 S$ & $q_0 3 S$ & $q_0 4 S$ & $q_0 5 S$ & $q_0 6 S$ & $q_0 7 S$ & $q_0 8 S$ & $q_0 9 S$ & $q_2 0 L$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \subsection*{Ответ}
+    Прогамма для машины Тьюринга приведена выше.
+\end{document}
