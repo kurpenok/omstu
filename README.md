@@ -55,7 +55,27 @@ This repository is intended for documenting solutions to problems from the train
 
 #### 3 semester
 
-To be continued...
+
+- [English](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/English "English")
+- [Math analyze](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Math%20analyze "Math analyze")
+- [Math logics](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Math%20logics "Math logics")
+- [Networks](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Networks "Networks")
+    - [Lab 5](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Networks/Lab5 "Lab 5")
+    - [Lab 6](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Networks/Lab6 "Lab 6")
+- [Number theory](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Number%20theory "Number theory")
+- [Operating system](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Operating%20systems "Operating system")
+    - [Lab 1](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Operating%20systems/Lab1 "Lab 1")
+    - [Lab 2](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Operating%20systems/Lab2 "Lab 2")
+    - [Lab 3](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Operating%20systems/Lab3 "Lab 3")
+    - [Lab 4](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Operating%20systems/Lab4 "Lab 4")
+    - [Lab 5](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Operating%20systems/Lab5 "Lab 5")
+    - [Lab 6](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Operating%20systems/Lab6 "Lab 6")
+    - [Lab 7](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Operating%20systems/Lab7 "Lab 7")
+    - [Lab 8](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Operating%20systems/Lab8 "Lab 8")
+    - [Lab 9](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Operating%20systems/Lab9 "Lab 9")
+- [Optimization](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Optimization "Optimization")
+- [Programming workshop](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Programming%20workshop "Programming workshop")
+- [Sport](https://gitlab.com/kurpenok/OmSTU/-/tree/main/3%20semester/Sport "Sport")
 
 ## Author
 
