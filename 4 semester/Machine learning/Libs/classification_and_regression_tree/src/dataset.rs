@@ -1,10 +1,9 @@
 #[derive(Debug)]
-#[allow(dead_code)]
 pub struct Dataset {
-    features: Vec<String>,
-    labels: Vec<String>,
-    objects: Vec<Vec<f64>>,
-    classes: Vec<String>,
+    pub features: Vec<String>,
+    pub labels: Vec<String>,
+    pub objects: Vec<Vec<f64>>,
+    pub classes: Vec<String>,
 }
 
 impl Dataset {
