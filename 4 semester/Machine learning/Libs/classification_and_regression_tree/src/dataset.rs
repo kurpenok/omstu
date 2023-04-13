@@ -1,3 +1,5 @@
+#[derive(Debug)]
+#[allow(dead_code)]
 pub struct Dataset {
     features: Vec<String>,
     labels: Vec<String>,
