@@ -1,13 +1,18 @@
 import pickle
 
-import pandas as pd
 import numpy as np
+import pandas as pd
+
+from sklearn.metrics import mean_squared_error
+
 import streamlit as st
 
 
 def main():
     model = load_model("model/model.pkl")
-    test_data = load_test_data("preprocessed_data.csv")
+    test_data = load_test_data("data/updated_df.csv")
+    y_test = test_data["Appliances"]
+    test_data = test_data.drop(labels=["Appliances"], axis=1)
     
     page = st.sidebar.selectbox(
         "Выберите страницу",
@@ -25,97 +30,94 @@ def main():
 
         st.header("Описание данных")
         st.markdown("""Предоставленные данные:
-* User_ID – идентификатор покупателя,
-* Product_ID – идентификатор продукта,
-* Age – возраст покупателя,
-* Occupation – профессия покупателя,
-* City_Category – категория города,
-* Stay_In_Current_City_Years – количество лет пребывания покупателя в текущем городе,
-* Marital_Status – семейное положение покупателя,
-* Product_Category_1 – первая категория продукта,
-* Product_Category_2 – вторая категория продукта при ее наличии,
-* Product_Category_3 – третья категория продукта при ее наличии,
-* Purchase – сумма покупки.
+* Appliances – ,
+* lights – ,
+* T1 – ,
+* RH_1 – ,
+* T2 – ,
+* RH_2 – ,
+* T3 – ,
+* RH_3 – ,
+* T3 – ,
+* RH_3 – ,
+* T4 – ,
+* RH_4 – ,
+* T5 – ,
+* RH_5 – ,
+* T6 – ,
+* RH_7 – ,
+* T8 – ,
+* RH_8 – ,
+* T9 – ,
+* RH_9 – ,
+* T_out – ,
+* Press_mm_hg - ,
+* RH_out - ,
+* Windspeed - ,
+* Visibility - ,
+* Tdewpoint - ,
+
 К категориальным признакам относятся:
-* пол покупателя принимает значения M, F, где значение M означает мужской пол, а значение F – женский пол;
-* возраст покупателя принимает значения 0-17, 18-25, 26-35, 36-45, 46-50, 51-55, 55+;
-* профессия покупателя принимает значения от 0 до 20, где значение 0 означает отсутствие профессии у покупателя, остальные значения означают код профессии;
-* категория города принимает значения A, B, C;
-* категории продукта принимают значения кодов категорий продуктов, причем продукт всегда имеет хотя бы одну категорию и ее значение записывается в признаке Product_Category_1, если продукт относится еще к каким-либо категориям, то код таких категорий записывается в признаках Product_Category_2 и Product_Category_3 соответственно.
-К порядковым признакам относится возраст покупателя, данный признак принимает значения 0-17, 18-25, 26-35, 36-45, 46-50, 51-55, 55+.
-К бинарным признакам относятся:
-* пол покупателя принимает значения M, F, где значение M (0) означает мужской пол, а значение F (1) – женский пол;
-* семейное положение покупателя, данный признак принимает значения 0 и 1, где значение 1 означает, что покупатель состоит в браке, значение 0 – не состоит в браке.
-К вещественным признакам относятся:
-* идентификатор покупателя,
-* идентификатор продукта,
-* сумма покупки.""")
+* Дата
+
+К численным признакам относятся все остальные столбцы.""")
 
     elif page == "Запрос к модели":
         st.title("Запрос к модели")
         st.write("Выберите страницу слева")
         request = st.selectbox(
             "Выберите запрос",
-            ["RMSE", "Первые 5 предсказанных значений", "Пользовательский пример", "Пасхалка"]
+            ["RMSE", "Первые 5 предсказанных значений", "Пользовательский пример"],
         )
 
         if request == "RMSE":
             st.header("Корень из среднеквадратичной ошибки")
-            rmse = 3006.55  # Костыль! Заменить на настоящий подсчёт метрики
+            y_pred = model.predict(test_data)
+            rmse = mean_squared_error(y_test, y_pred)
             st.write(f"{rmse}")
+
         elif request == "Первые 5 предсказанных значений":
             st.header("Первые 5 предсказанных значений")
-            first_5_test = test_data.iloc[:5, :]
-            first_5_pred = model.predict(first_5_test)
-            for item in first_5_pred:
-                st.write(f"{item:.2f}")
+            y_pred = model.predict(test_data.iloc[:5, :])
+            for pred in y_pred:
+                st.write(f"{pred:.2f}")
+
         elif request == "Пользовательский пример":
             st.header("Пользовательский пример")
 
-            gender = st.selectbox("Пол", ['М', 'Ж'])
-            gender = 0 if gender == 'М' else 1
+            lights = st.number_input("Lights")
+            t1 = st.number_input("T1")
+            rh_1 = st.number_input("RH_1")
+            t2 = st.number_input("T2")
+            rh_2 = st.number_input("RH_2")
+            t3 = st.number_input("T3")
+            rh_3 = st.number_input("RH_3")
+            t4 = st.number_input("T4")
+            rh_4 = st.number_input("RH_4")
+            t5 = st.number_input("T5")
+            rh_5 = st.number_input("RH_5")
+            t6 = st.number_input("T6")
+            rh_6 = st.number_input("RH_6")
+            t7 = st.number_input("T7")
+            rh_7 = st.number_input("RH_7")
+            t8 = st.number_input("T8")
+            rh_8 = st.number_input("RH_8")
+            t9 = st.number_input("T9")
+            rh_9 = st.number_input("RH_9")
+            t_out = st.number_input("T_out")
+            press_mm_hg = st.number_input("Press_mm_hg")
+            rh_out = st.number_input("RH_out")
+            windspeed = st.number_input("Windspeed")
+            visibility = st.number_input("Visibility")
+            tdewpoint = st.number_input("Tdewpoint")
 
-            age = st.number_input("Возраст", 0, 100)
-            age = 0 if age >= 55 else 1
-
-            city = st.selectbox("Город", ['A', 'B', 'C'])
-            city = 0 if city == 'C' else 1
-
-            stay_in_city = st.selectbox("Количество лет в городе", ['1', '2', '3', '4+'])
-            stay_in_city = 0 if stay_in_city == '4+' else 1
-
-            marital_status = st.selectbox("Семейное положение (в браке - 1, иначе - 0)", [0, 1])
-            marital_status = int(marital_status)
-
-            occupation = st.number_input("Код профессии от 0 до 20", 0, 19)
-            one_hot_occup = []
-            for num in range(0, 20):
-                if num == occupation:
-                    one_hot_occup.append(1)
-                else:
-                    one_hot_occup.append(0)
-
-            category = st.number_input("Категория  от 0 до 20", 0, 20)
-            one_hot_cat = []
-            for num in range(0, 21):
-                if num == category:
-                    one_hot_cat.append(1)
-                else:
-                    one_hot_cat.append(0)
-
-            if st.button('Предсказать'):
-                data = [gender, age, city, stay_in_city, marital_status]
-                for item in one_hot_occup + one_hot_cat:
-                    data.append(item)
+            if st.button("Предсказать"):
+                data = [lights, t1, rh_1, t2, rh_2, t3, rh_3, t4, rh_4, t5, rh_5, t6, rh_6, t7, rh_7, t8, rh_8, t9, rh_9, t_out, press_mm_hg, rh_out, windspeed, visibility, tdewpoint]
                 data = np.array(data).reshape((1, -1))
                 pred = model.predict(data)
                 st.write(f"Предсказанное значение: {pred[0]:.2f}")
             else:
                 pass
-
-        elif request == "Пасхалка":
-            st.header("Пасхалка")
-            st.write(":)")
 
 
 @st.cache_data
@@ -128,7 +130,6 @@ def load_model(path_to_file):
 @st.cache_data
 def load_test_data(path_to_file):
     df = pd.read_csv(path_to_file, index_col="Unnamed: 0")
-    df = df.drop(labels=["Product_ID"], axis=1)
     return df
 
 
