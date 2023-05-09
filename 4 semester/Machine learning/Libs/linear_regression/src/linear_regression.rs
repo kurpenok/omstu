@@ -1,56 +1,43 @@
+fn dot(x: Vec<Vec<f64>>, y: Vec<f64>) -> Vec<Vec<f64>> {
+}
+
+fn transpose(x: Vec<Vec<f64>>) -> Vec<Vec<f64>> {
+}
+
 pub struct LinearRegression {
-    step_size: f64,
-    num_iterations: usize,
-    pub weights: Vec<f64>,
+    eta: f64,
+    n_iterations: i64,
+    w: Vec<f64>,
 }
 
 impl LinearRegression {
-    pub fn new(step_size: f64, num_iterations: usize) -> LinearRegression {
+    pub fn new(eta: f64, n_iterations: i64) -> Self {
         LinearRegression {
-            step_size,
-            num_iterations,
-            weights: Vec::new(),
+            eta,
+            n_iterations
         }
     }
 
-    pub fn fit(&mut self, x: &Vec<Vec<f64>>, y: &Vec<f64>) {
-        let n_samples = x.len();
-        let n_features = x[0].len();
+    pub fn fit(x: Vec<Vec<f64>>, y: Vec<f64>) -> Self {
+        let mut y_pred: Vec<f64> = Vec::new();
+        let mut residuals: Vec<f64> = Vec::new();
+        let mut cost: Vec<f64> = Vec::new();
+        let mut w: Vec<f64> = vec![x[0].len(); 0 as f64];
+        let mut m: i64 = x.len() as i64;
 
-        // Initialize the weights with zeros
-        self.weights = vec![0.0; n_features];
-
-        for _ in 0..self.num_iterations {
-            // Calculate the gradients
-            let mut gradients = vec![0.0; n_features];
-            for i in 0..n_samples {
-                let prediction = self.predict_single(&x[i]);
-                let error = y[i] - prediction;
-                for j in 0..n_features {
-                    gradients[j] += error * x[i][j];
-                }
-            }
-
-            // Update the weights
-            for j in 0..n_features {
-                self.weights[j] += self.step_size * gradients[j];
-            }
+        for i in 0..self::n_iterations {
+            y_pred = dot(x, w);
+            residuals = y_pred - y;
+            gradient_vector = dot(transpose(x), residuals);
+            w = (eta / m) * gradient_vector;
+            cost = sum((residuals**2)) / (2 * m);
+            cost.push(cost);
         }
+
+        Self
     }
 
-    fn predict_single(&self, x: &Vec<f64>) -> f64 {
-        let mut result = 0.0;
-        for i in 0..x.len() {
-            result += self.weights[i] * x[i];
-        }
-        result
-    }
-
-    pub fn predict(&self, x: &Vec<Vec<f64>>) -> Vec<f64> {
-        let mut y_pred = vec![0.0; x.len()];
-        for i in 0..x.len() {
-            y_pred[i] = self.predict_single(&x[i]);
-        }
-        y_pred
+    pub fn predict(x: Vec<Vec<f64>>) -> Vec<Vec<f64>> {
+        dot(x, w)
     }
 }
