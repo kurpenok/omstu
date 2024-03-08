@@ -11,10 +11,10 @@ def f(x: list[float]) -> float:
 
 
 def main() -> None:
-    n = 2
+    x_0 = [0.0, 0.0]
     eps = 0.0001
 
-    print(f"[+] Gauss-Seidel: {gauss_seidel_search(f, n, eps)}")
+    print(f"[+] Gauss-Seidel: {gauss_seidel_search(f, x_0, eps):.2f}")
 
 
 if __name__ == "__main__":

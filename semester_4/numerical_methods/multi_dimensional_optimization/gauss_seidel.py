@@ -1,28 +1,26 @@
 from typing import Callable
 
 
-def optimize(f: Callable, axes: list[float], i: int, eps: float) -> float:
-    axes_left = axes[:]
-    axes_right = axes[:]
+def optimize(f: Callable, i: int, x: list[float], eps: float) -> float:
+    x_left = x[:]
+    x_right = x[:]
 
-    axes_left[i] -= eps
-    axes_right[i] += eps
+    x_left[i] -= eps
+    x_right[i] += eps
 
-    while not (f(axes_left) > f(axes) < f(axes_right)):
-        if f(axes_left) < f(axes) < f(axes_right):
-            axes_right, axes = axes[:], axes_left[:]
-            axes_left[i] -= eps
-        elif f(axes_left) > f(axes) > f(axes_right):
-            axes_left, axes = axes[:], axes_right[:]
-            axes_right[i] += eps
+    while not (f(x_left) > f(x) < f(x_right)):
+        if f(x_left) < f(x) < f(x_right):
+            x_right, x = x[:], x_left[:]
+            x_left[i] -= eps
+        elif f(x_left) > f(x) > f(x_right):
+            x_left, x = x[:], x_right[:]
+            x_right[i] += eps
 
-    return axes[i]
+    return x[i]
 
 
-def gauss_seidel_search(f: Callable, n: int, eps: float) -> float:
-    axes = [0.0] * n
+def gauss_seidel_search(f: Callable, x_0: list[float], eps: float) -> float:
+    for i in range(len(x_0)):
+        x_0[i] = optimize(f, i, x_0, eps)
 
-    for i in range(n):
-        axes[i] = optimize(f, axes, i, eps)
-
-    return f(axes)
+    return f(x_0)
