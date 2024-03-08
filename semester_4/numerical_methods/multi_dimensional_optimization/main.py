@@ -1,9 +1,11 @@
 import math
 
+import numpy as np
+
 from gauss_seidel import gauss_seidel_search
 
 
-def f(x: list[float]) -> float:
+def f(x: np.ndarray) -> float:
     A = 20
     a = 3
     b = 2
@@ -11,7 +13,7 @@ def f(x: list[float]) -> float:
 
 
 def main() -> None:
-    x_0 = [0.0, 0.0]
+    x_0 = np.zeros(2)
     eps = 0.0001
 
     print(f"[+] Gauss-Seidel: {gauss_seidel_search(f, x_0, eps):.2f}")
