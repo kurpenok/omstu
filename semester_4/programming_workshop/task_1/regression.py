@@ -1,3 +1,5 @@
+import pickle
+
 import numpy as np
 
 from penalty import Penalty
@@ -45,3 +47,7 @@ class Regression:
         X_test = np.insert(X_test, 0, 1, axis=1)
         y_pred = self.__hypothesis(self.w, self.b, X_test)
         return y_pred
+
+    def save(self, filename: str) -> None:
+        with open(filename, "wb") as file:
+            pickle.dump(self, file, protocol=pickle.HIGHEST_PROTOCOL)
