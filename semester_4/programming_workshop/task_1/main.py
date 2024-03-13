@@ -9,7 +9,6 @@ from lasso import LassoRegression
 
 def main() -> None:
     X, y = make_regression(n_samples=50_000, n_features=2)
-
     X_train, X_test, y_train, y_test = train_test_split(X, y)
 
     params = {
