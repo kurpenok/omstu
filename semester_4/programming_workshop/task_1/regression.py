@@ -24,10 +24,8 @@ class Regression:
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         X = np.insert(X, 0, 1, axis=1)
 
-        try:
-            y.shape[1]
-        except IndexError:
-            print("[-] Target array should be a one dimentional array not a list")
+        if len(y.shape) > 1:  # Проверяем, является ли массив меток классов многомерным
+            print("[-] Target array should be a one dimensional array not a list")
             return
 
         self.m = X.shape[0]
@@ -35,6 +33,8 @@ class Regression:
 
         self.w = np.zeros((self.n, 1))
         self.b = 0
+
+        y = y.reshape(-1, 1)  # Преобразуем метки классов в одномерный массив
 
         for _ in range(1, self.iterations + 1):
             y_pred = self.__hypothesis(self.w, self.b, X)
