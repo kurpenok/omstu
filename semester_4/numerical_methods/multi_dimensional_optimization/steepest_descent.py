@@ -4,18 +4,18 @@ from typing import Callable
 import numpy as np
 
 
-def f(x: np.ndarray):
+def f(x: np.ndarray) -> float:
     A = 20
     a = 3
     b = 2
     return A - ((x[0] - a) * math.exp(-x[0] + a)) - ((x[1] - b) * math.exp(-x[1] + b))
 
 
-def grad_f(x: np.ndarray):
+def grad_f(x: np.ndarray) -> np.ndarray:
     return math.exp(2 - x[0]) * (math.e * (x[0] - 4) + x[1] - 2)
 
 
-def line_search(x: np.ndarray, d: np.ndarray):
+def line_search(x: np.ndarray, d: np.ndarray) -> float:
     alpha = 0.1
     while f(x + alpha * d) > f(x):
         alpha *= 0.5

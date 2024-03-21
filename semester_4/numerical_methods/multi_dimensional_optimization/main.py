@@ -5,6 +5,7 @@ import numpy as np
 from conjugate_directions import conjugate_directions_search
 from gauss_seidel import gauss_seidel_search
 from hooke_jeeves import hooke_jeeves_search
+from rosenbrock import rosenbrock_search
 from steepest_descent import steepest_descent_search
 
 
@@ -23,6 +24,7 @@ def main() -> None:
     print(f"[+] Conjugate directions: {conjugate_directions_search(f, x_0, eps):.2f}")
     print(f"[+] Steepest descent: {steepest_descent_search(f, x_0, eps):.2f}")
     print(f"[+] Hooke-Jeeves: {hooke_jeeves_search(f, x_0, eps):.2f}")
+    print(f"[+] Rosenbrock: {rosenbrock_search(f, x_0, eps):.2f}")
 
 
 if __name__ == "__main__":
