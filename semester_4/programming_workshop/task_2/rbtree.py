@@ -1,10 +1,9 @@
 from __future__ import annotations, unicode_literals
 
 import enum
-import re
-from os import pathconf
-from types import resolve_bases
 from typing import Any
+
+import pygraphviz as pgv
 
 
 class RBTNodeColor(enum.Enum):
@@ -285,3 +284,25 @@ class RBTree:
 
         if node:
             node.color = RBTNodeColor.BLACK
+
+    def rbt_to_image(self) -> None:
+        graph = pgv.AGraph()
+
+        self._post_order(graph, self.root)
+
+        graph.layout("dot")
+        graph.draw("graph.jpg")
+
+    def _post_order(self, graph: pgv.AGraph, node: RBTNode) -> None:
+        graph.add_node(str(node.key))
+        if node.color == RBTNodeColor.RED:
+            graph.get_node(str(node.key)).attr["style"] = "filled"
+            graph.get_node(str(node.key)).attr["fillcolor"] = "red"
+
+        if node is not None:
+            if node.left is not None:
+                graph.add_edge(str(node.key), str(node.left.key))
+                self._post_order(graph, node.left)
+            if node.right is not None:
+                graph.add_edge(str(node.key), str(node.right.key))
+                self._post_order(graph, node.right)
