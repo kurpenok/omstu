@@ -32,10 +32,35 @@ class RBTree:
         self.root: RBTNode = None
 
     def print(self) -> None:
-        pass
+        if self.root is None:
+            print("[+] Red-Black tree is empty")
+        else:
+            self._print(self.root)
 
-    def search(self, key: Any) -> None:
-        pass
+    def _print(self, node: RBTNode) -> None:
+        if node is None:
+            return
+
+        if node.parent is None:
+            print(f"[+] {node.key} ({node.color.value}) is root")
+        elif node.parent.left == node:
+            print(f"[+] {node.key} ({node.color}) is {node.parent.key}'s left child")
+        else:
+            print(f"[+] {node.key} ({node.color}) is {node.parent.key}'s right child")
+
+        self._print(node.left)
+        self._print(node.right)
+
+    def search(self, key: Any) -> RBTNode:
+        return self._search(self.root, key)
+
+    def _search(self, node: RBTNode, key: Any) -> RBTNode:
+        if node is None or node.key == key:
+            return node
+        elif key > node.key:
+            return self._search(node.right, key)
+        else:
+            return self._search(node.left, key)
 
     def _left_rotate(self, x: RBTNode) -> None:
         y: RBTNode = x.right
