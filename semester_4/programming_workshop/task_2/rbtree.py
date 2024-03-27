@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import enum
-from typing import Any, Optional
+from typing import Any
 
 
 class RBTNodeColor(enum.Enum):
@@ -14,9 +14,9 @@ class RBTNode:
         self,
         key: Any,
         color: RBTNodeColor,
-        parent: Optional[RBTNode] = None,
-        left: Optional[RBTNode] = None,
-        right: Optional[RBTNode] = None,
+        parent: RBTNode,
+        left: RBTNode,
+        right: RBTNode,
     ) -> None:
 
         self.key = key
@@ -28,7 +28,7 @@ class RBTNode:
 
 class RBTree:
     def __init__(self) -> None:
-        self.root: Optional[RBTNode] = None
+        self.root: RBTNode
 
     def print(self) -> None:
         pass
@@ -37,10 +37,42 @@ class RBTree:
         pass
 
     def _left_rotate(self, x: RBTNode) -> None:
-        pass
+        y: RBTNode = x.right
+
+        x.right = y.left
+        if y.left is not None:
+            y.left.parent = x
+
+        y.parent = x.parent
+        if x.parent is None:
+            self.root = y
+        else:
+            if x == x.parent.left:
+                x.parent.left = y
+            else:
+                x.parent.right = y
+
+        y.left = x
+        x.parent = y
 
     def _right_rotate(self, y: RBTNode) -> None:
-        pass
+        x: RBTNode = y.left
+
+        y.left = x.right
+        if x.right is not None:
+            x.right.parent = y
+
+        x.parent = y.parent
+        if y.parent is None:
+            self.root = x
+        else:
+            if y == y.parent.right:
+                y.parent.right = x
+            else:
+                y.parent.left = x
+
+        x.right = y
+        y.parent = x
 
     def insert(self, key: Any) -> None:
         pass
