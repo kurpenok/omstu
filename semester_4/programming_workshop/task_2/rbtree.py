@@ -1,6 +1,8 @@
 from __future__ import annotations, unicode_literals
 
 import enum
+import re
+from os import pathconf
 from types import resolve_bases
 from typing import Any
 
@@ -168,4 +170,118 @@ class RBTree:
         self.root.color = RBTNodeColor.BLACK
 
     def remove(self, key: Any) -> None:
-        pass
+        to_delete_node: RBTNode = self.search(key)
+        if to_delete_node is not None:
+            self._remove(to_delete_node)
+
+    def _remove(self, node: RBTNode) -> None:
+        if node.left is not None and node.right is not None:
+            replace: RBTNode = node.right
+
+            while replace.left is not None:
+                replace = replace.left
+
+            if node.parent is not None:
+                if node.parent.left == node:
+                    node.parent.left = replace
+                else:
+                    node.parent.right = replace
+            else:
+                self.root = replace
+
+            child = replace.right
+            parent = replace.parent
+            color = replace.color
+
+            if parent == node:
+                parent = replace
+            else:
+                if child is not None:
+                    child.parent = parent
+                parent.left = child
+                replace.right = node.right
+                node.right.parent = replace
+            replace.parent = node.parent
+            replace.color = node.color
+            replace.left = node.left
+            node.left.parent = replace
+
+            if color == RBTNodeColor.BLACK:
+                self._remove_fix_up(child, parent)
+            return
+
+        if node.left is not None:
+            child = node.left
+        else:
+            child = node.right
+
+        parent = node.parent
+        color = node.color
+        if child:
+            child.parent = parent
+
+        if parent:
+            if node == parent.left:
+                parent.left = child
+            else:
+                parent.right = child
+        else:
+            self.root = child
+
+        if color == RBTNodeColor.BLACK:
+            self._remove_fix_up(child, parent)
+
+    def _remove_fix_up(self, node: RBTNode, parent: RBTNode) -> None:
+        while not node or node.color == RBTNodeColor.BLACK and node != self.root:
+            if parent.left == node:
+                othernode = parent.right
+                if othernode.color == RBTNodeColor.RED:
+                    othernode.color = RBTNodeColor.BLACK
+                    parent.color = RBTNodeColor.RED
+                    self._left_rotate(parent)
+                    othernode = parent.right
+                else:
+                    if (
+                        not othernode.right
+                        or othernode.right.color == RBTNodeColor.BLACK
+                    ):
+                        othernode.left.color = RBTNodeColor.BLACK
+                        othernode.color = RBTNodeColor.RED
+                        self._right_rotate(othernode)
+                        othernode = parent.right
+                    othernode.color = parent.color
+                    parent.color = RBTNodeColor.BLACK
+                    othernode.right.color = RBTNodeColor.BLACK
+                    self._left_rotate(parent)
+                    node = self.root
+                    break
+            else:
+                othernode = parent.left
+                if othernode.color == RBTNodeColor.RED:
+                    othernode.color = RBTNodeColor.BLACK
+                    parent.color = RBTNodeColor.RED
+                    self._right_rotate(parent)
+                    othernode = parent.left
+                if (
+                    not othernode.left or othernode.left.color == RBTNodeColor.BLACK
+                ) and (
+                    not othernode.right or othernode.right.color == RBTNodeColor.BLACK
+                ):
+                    othernode.color = RBTNodeColor.RED
+                    node = parent
+                    parent = node.parent
+                else:
+                    if not othernode.left or othernode.left.color == RBTNodeColor.BLACK:
+                        othernode.right.color = RBTNodeColor.BLACK
+                        othernode.color = RBTNodeColor.RED
+                        self._left_rotate(othernode)
+                        othernode = parent.left
+                    othernode.color = parent.color
+                    parent.color = RBTNodeColor.BLACK
+                    othernode.left.color = RBTNodeColor.BLACK
+                    self._right_rotate(parent)
+                    node = self.root
+                    break
+
+        if node:
+            node.color = RBTNodeColor.BLACK

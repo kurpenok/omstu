@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
 
+from rbtree import RBTree
+
+
 def main() -> None:
-    pass
+    rbtree = RBTree()
 
 
 if __name__ == "__main__":
