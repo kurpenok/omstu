@@ -1222,3 +1222,6 @@ Cargo.lock
 
 # Catboost log info
 catboost_info
+
+# Dumped model files
+*.dump
