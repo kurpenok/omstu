@@ -6,88 +6,81 @@
 
 #include "RedBlackTree.h"
 
-template <class Key, class Compare = std::less<Key>>
-class Set {
+template <class Key, class Compare = std::less<Key>> class Set {
 public:
-    Set();
-    Set(const Set<Key>&);
-    Set<Key>& operator=(const Set<Key>&);
-    ~Set();
-    
-    bool Empty() const;
-    size_t Size() const;
+  Set();
+  Set(const Set<Key> &);
+  Set<Key> &operator=(const Set<Key> &);
+  ~Set();
 
-    void Clear();
-    void Insert(const Key&);
-    void Erase(const Key&);
+  bool Empty() const;
+  size_t Size() const;
 
-    bool Find(const Key&);
+  void Clear();
+  void Insert(const Key &);
+  void Erase(const Key &);
+
+  bool Find(const Key &);
 
 private:
-    RBTree<Key> rbtree_;
-    size_t size_;
+  RBTree<Key> rbtree_;
+  size_t size_;
 };
 
-template <class Key, class Compare>
-Set<Key, Compare>::Set() {}
+template <class Key, class Compare> Set<Key, Compare>::Set() {}
 
 template <class Key, class Compare>
-Set<Key, Compare>::Set(const Set<Key>& other) {
-    rbtree_ = other.rbtree_;
-    size_ = other.size_;
+Set<Key, Compare>::Set(const Set<Key> &other) {
+  rbtree_ = other.rbtree_;
+  size_ = other.size_;
 }
 
 template <class Key, class Compare>
-Set<Key>& Set<Key, Compare>::operator=(const Set<Key> &other) {
-    rbtree_ = other.rbtree_;
-    size_ = other.size_;
+Set<Key> &Set<Key, Compare>::operator=(const Set<Key> &other) {
+  rbtree_ = other.rbtree_;
+  size_ = other.size_;
+}
+
+template <class Key, class Compare> Set<Key, Compare>::~Set() {
+  delete rbtree_;
+}
+
+template <class Key, class Compare> bool Set<Key, Compare>::Empty() const {
+  return size_ == 0;
+}
+
+template <class Key, class Compare> size_t Set<Key, Compare>::Size() const {
+  return size_;
+}
+
+template <class Key, class Compare> void Set<Key, Compare>::Clear() {
+  rbtree_ = nullptr;
+  size_ = 0;
 }
 
 template <class Key, class Compare>
-Set<Key, Compare>::~Set() {
-    delete rbtree_;
+void Set<Key, Compare>::Insert(const Key &key) {
+  rbtree_.insert(key);
 }
 
 template <class Key, class Compare>
-bool Set<Key, Compare>::Empty() const {
-    return size_ == 0;
+void Set<Key, Compare>::Erase(const Key &key) {
+  rbtree_.remove(key);
 }
 
 template <class Key, class Compare>
-size_t Set<Key, Compare>::Size() const {
-    return size_;
-}
-
-template <class Key, class Compare>
-void Set<Key, Compare>::Clear() {
-    rbtree_ = nullptr;
-    size_ = 0;
-}
-
-template <class Key, class Compare>
-void Set<Key, Compare>::Insert(const Key& key) {
-    rbtree_.insert(key);
-}
-
-template<class Key, class Compare>
-void Set<Key, Compare>::Erase(const Key& key) {
-    rbtree_.remove(key);
-}
-
-template<class Key, class Compare>
 bool Set<Key, Compare>::Find(const Key &key) {
-    return rbtree_.search(key);
+  return rbtree_.search(key);
 }
 
 template <class Key, class Compare>
-Set<Key, Compare>& operator+(Set<Key>& set, Key element) {
-    set.Insert(element);
-    return set;
+Set<Key, Compare> &operator+(Set<Key> &set, Key element) {
+  set.Insert(element);
+  return set;
 }
 
-template<class Key, class Compare>
-Set<Key, Compare>& operator+=(Set<Key>& set, Key element) {
-    set.Insert(element);
-    return set;
+template <class Key, class Compare>
+Set<Key, Compare> &operator+=(Set<Key> &set, Key element) {
+  set.Insert(element);
+  return set;
 }
-
