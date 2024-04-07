@@ -2,25 +2,17 @@ import numpy as np
 import sympy
 
 
-def phi(x: np.ndarray) -> float:
-    return pow(x[0], 2) + 1.5 * x[1] - 2
-
-
-def f(x: np.ndarray) -> float:
-    return x[0] - x[1]
-
-
-def langrange_multipliers_search() -> None:
+def langrange_multipliers_search() -> np.ndarray:
     x_1, x_2, w = sympy.symbols("x_1 x_2 w")
 
     f = x_1 - x_2
-    phi = pow(x_1, 2) + 1.5 * x_2 - 2
+    g = pow(x_1, 2) + 1.5 * pow(x_2, 2) - 2
+    l = f - w * g
 
-    g = x_1 - x_2 + w * (pow(x_1, 2) + 1.5 * x_2 - 2)
-    gx_1 = g.diff(x_1)
-    gx_2 = g.diff(x_2)
-    gw = g.diff(w)
+    dl_dx_1 = l.diff(x_1)
+    dl_dx_2 = l.diff(x_2)
+    dl_dw = l.diff(w)
 
-    sols = sympy.solve([gx_1, gx_2, gw], x_1, x_2, w)
+    solutions = sympy.solve([dl_dx_1, dl_dx_2, dl_dw], x_1, x_2, w)
 
-    print(sols)
+    return solutions
