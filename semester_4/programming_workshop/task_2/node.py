@@ -24,5 +24,8 @@ class TreeNode:
         self.right: TreeNode | None = right
         self.color: TreeNodeColor = color
 
-    def is_red(self) -> bool:
-        return self.color == TreeNodeColor.RED
+
+def is_red(node: TreeNode | None) -> bool:
+    if node is None:
+        return False
+    return node.color == TreeNodeColor.RED
