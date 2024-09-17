@@ -1,4 +1,4 @@
-pub fn decrypt(abc: &Vec<char>, s: String, key: usize) -> String {
+pub fn decrypt(abc: &Vec<char>, s: &String, key: usize) -> String {
     let mut decrypted_s = String::new();
     let key = key % abc.len();
 
@@ -21,8 +21,8 @@ mod test {
     fn test_decrypt_english_string() {
         let abc = "abcdefghijklmnopqrstuvwxyz".chars().collect::<Vec<char>>();
 
-        assert_eq!(decrypt(&abc, "bcd".to_string(), 1), "abc");
-        assert_eq!(decrypt(&abc, "yza".to_string(), 1), "xyz");
+        assert_eq!(decrypt(&abc, &"bcd".to_string(), 1), "abc");
+        assert_eq!(decrypt(&abc, &"yza".to_string(), 1), "xyz");
     }
 
     #[test]
@@ -31,7 +31,7 @@ mod test {
             .chars()
             .collect::<Vec<char>>();
 
-        assert_eq!(decrypt(&abc, "бвг".to_string(), 1), "абв");
-        assert_eq!(decrypt(&abc, "юяа".to_string(), 1), "эюя");
+        assert_eq!(decrypt(&abc, &"бвг".to_string(), 1), "абв");
+        assert_eq!(decrypt(&abc, &"юяа".to_string(), 1), "эюя");
     }
 }

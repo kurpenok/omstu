@@ -1,4 +1,4 @@
-pub fn encrypt(abc: &Vec<char>, s: String, key: usize) -> String {
+pub fn encrypt(abc: &Vec<char>, s: &String, key: usize) -> String {
     let mut encrypted_s = String::new();
     let key = key % abc.len();
 
@@ -19,8 +19,8 @@ mod test {
     fn test_encrypt_english_string() {
         let abc = "abcdefghijklmnopqrstuvwxyz".chars().collect::<Vec<char>>();
 
-        assert_eq!(encrypt(&abc, "abc".to_string(), 1), "bcd");
-        assert_eq!(encrypt(&abc, "xyz".to_string(), 1), "yza");
+        assert_eq!(encrypt(&abc, &"abc".to_string(), 1), "bcd");
+        assert_eq!(encrypt(&abc, &"xyz".to_string(), 1), "yza");
     }
 
     #[test]
@@ -29,7 +29,7 @@ mod test {
             .chars()
             .collect::<Vec<char>>();
 
-        assert_eq!(encrypt(&abc, "абв".to_string(), 1), "бвг");
-        assert_eq!(encrypt(&abc, "эюя".to_string(), 1), "юяа");
+        assert_eq!(encrypt(&abc, &"абв".to_string(), 1), "бвг");
+        assert_eq!(encrypt(&abc, &"эюя".to_string(), 1), "юяа");
     }
 }
