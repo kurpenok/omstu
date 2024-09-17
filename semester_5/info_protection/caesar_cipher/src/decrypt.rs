@@ -1,14 +1,13 @@
-pub fn decrypt(s: String, key: u32) -> String {
+pub fn decrypt(abc: &Vec<char>, s: String, key: usize) -> String {
     let mut decrypted_s = String::new();
-    let key = key % 26;
+    let key = key % abc.len();
 
     for c in s.chars() {
-        let c_code = c as u32;
-        let mut decrypted_c_code = c_code - key;
-        if decrypted_c_code < 97 {
-            decrypted_c_code = 122 - (96 - decrypted_c_code);
-        }
-        decrypted_s.push(char::from_u32(decrypted_c_code).unwrap());
+        let decrypted_c_index = ((abc.len() as i32
+            + (abc.iter().position(|symbol| *symbol == c).unwrap() as i32 - key as i32))
+            % abc.len() as i32) as usize;
+
+        decrypted_s.push(abc[decrypted_c_index]);
     }
 
     decrypted_s
@@ -19,12 +18,20 @@ mod test {
     use super::*;
 
     #[test]
-    fn test_case_1() {
-        assert_eq!(decrypt("bcd".to_string(), 1), "abc");
+    fn test_decrypt_english_string() {
+        let abc = "abcdefghijklmnopqrstuvwxyz".chars().collect::<Vec<char>>();
+
+        assert_eq!(decrypt(&abc, "bcd".to_string(), 1), "abc");
+        assert_eq!(decrypt(&abc, "yza".to_string(), 1), "xyz");
     }
 
     #[test]
-    fn test_case_2() {
-        assert_eq!(decrypt("yza".to_string(), 1), "xyz");
+    fn test_decrypt_russian_string() {
+        let abc = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+            .chars()
+            .collect::<Vec<char>>();
+
+        assert_eq!(decrypt(&abc, "бвг".to_string(), 1), "абв");
+        assert_eq!(decrypt(&abc, "юяа".to_string(), 1), "эюя");
     }
 }
