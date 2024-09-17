@@ -11,7 +11,7 @@ pub struct Encrypt {
     pub message: String,
 
     #[arg(long)]
-    pub key: usize,
+    pub key: i32,
 }
 
 #[derive(Args)]
@@ -23,7 +23,7 @@ pub struct Decrypt {
     pub message: String,
 
     #[arg(long)]
-    pub key: Option<usize>,
+    pub key: Option<i32>,
 }
 
 #[derive(Subcommand)]
