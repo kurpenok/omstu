@@ -1,5 +1,5 @@
-mod decrypt;
-mod encrypt;
+mod decryptor;
+mod encryptor;
 
 fn main() {
     println!("Hello, world!");
