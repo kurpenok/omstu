@@ -1,14 +1,11 @@
-pub fn encrypt(s: String, key: u32) -> String {
+pub fn encrypt(abc: &Vec<char>, s: String, key: usize) -> String {
     let mut encrypted_s = String::new();
-    let key = key % 26;
+    let key = key % abc.len();
 
     for c in s.chars() {
-        let c_code = c as u32;
-        let mut encrypted_c_code = c_code + key;
-        if encrypted_c_code > 122 {
-            encrypted_c_code = 96 + (encrypted_c_code - 122);
-        }
-        encrypted_s.push(char::from_u32(encrypted_c_code).unwrap());
+        let encrypted_c_index =
+            (abc.iter().position(|symbol| *symbol == c).unwrap() + key) % abc.len();
+        encrypted_s.push(abc[encrypted_c_index]);
     }
 
     encrypted_s
@@ -19,12 +16,20 @@ mod test {
     use super::*;
 
     #[test]
-    fn test_case_1() {
-        assert_eq!(encrypt("abc".to_string(), 1), "bcd");
+    fn test_encrypt_english_string() {
+        let abc = "abcdefghijklmnopqrstuvwxyz".chars().collect::<Vec<char>>();
+
+        assert_eq!(encrypt(&abc, "abc".to_string(), 1), "bcd");
+        assert_eq!(encrypt(&abc, "xyz".to_string(), 1), "yza");
     }
 
     #[test]
-    fn test_case_2() {
-        assert_eq!(encrypt("xyz".to_string(), 1), "yza");
+    fn test_encrypt_russian_string() {
+        let abc = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
+            .chars()
+            .collect::<Vec<char>>();
+
+        assert_eq!(encrypt(&abc, "абв".to_string(), 1), "бвг");
+        assert_eq!(encrypt(&abc, "эюя".to_string(), 1), "юяа");
     }
 }
