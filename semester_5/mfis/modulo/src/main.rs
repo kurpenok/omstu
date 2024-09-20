@@ -2,12 +2,12 @@ use clap::Parser;
 use cli_actions::cli_invert;
 use cli_args::{Cli, Commands};
 
-pub mod gcd;
 pub mod invert;
 pub mod ops;
 
 mod cli_actions;
 mod cli_args;
+mod gcd;
 
 fn main() {
     // Usage:
