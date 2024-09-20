@@ -45,6 +45,16 @@ pub fn mod_div(a: i32, b: i32, m: i32) -> Option<i32> {
     Some(quot % m)
 }
 
+pub fn mod_pow(a: i32, p: u32, m: i32) -> i32 {
+    let mut prod = a.pow(p);
+
+    while prod < 0 {
+        prod += m;
+    }
+
+    prod % m
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -75,5 +85,12 @@ mod test {
         assert_eq!(mod_div(1, 2, 7), Some(4));
         assert_eq!(mod_div(6, 8, 17), Some(5));
         assert_eq!(mod_div(-47, 17, 19), Some(14));
+    }
+
+    #[test]
+    fn test_modulo_exponentiation() {
+        assert_eq!(mod_pow(1, 2, 10), 1);
+        assert_eq!(mod_pow(6, 8, 12), 0);
+        assert_eq!(mod_pow(-7, 7, 8), 1);
     }
 }
