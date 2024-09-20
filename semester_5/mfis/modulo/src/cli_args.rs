@@ -5,10 +5,10 @@ use clap::Subcommand;
 #[derive(Args)]
 pub struct Invert {
     #[arg(long)]
-    pub a: String,
+    pub a: i32,
 
     #[arg(long)]
-    pub m: String,
+    pub m: i32,
 }
 
 #[derive(Subcommand)]
