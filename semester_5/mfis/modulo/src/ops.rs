@@ -1,4 +1,4 @@
-pub fn add(a: i32, b: i32, m: i32) -> i32 {
+pub fn mod_add(a: i32, b: i32, m: i32) -> i32 {
     let mut sum = a + b;
 
     while sum < 0 {
@@ -8,14 +8,24 @@ pub fn add(a: i32, b: i32, m: i32) -> i32 {
     sum % m
 }
 
-pub fn sub(a: i32, b: i32, m: i32) -> i32 {
-    let mut sum = a - b;
+pub fn mod_sub(a: i32, b: i32, m: i32) -> i32 {
+    let mut diff = a - b;
 
-    while sum < 0 {
-        sum += m;
+    while diff < 0 {
+        diff += m;
     }
 
-    sum % m
+    diff % m
+}
+
+pub fn mod_mul(a: i32, b: i32, m: i32) -> i32 {
+    let mut prod = a * b;
+
+    while prod < 0 {
+        prod += m;
+    }
+
+    prod % m
 }
 
 #[cfg(test)]
@@ -24,15 +34,22 @@ mod test {
 
     #[test]
     fn test_modulo_addition() {
-        assert_eq!(add(1, 2, 10), 3);
-        assert_eq!(add(6, 8, 12), 2);
-        assert_eq!(add(-47, 17, 8), 2);
+        assert_eq!(mod_add(1, 2, 10), 3);
+        assert_eq!(mod_add(6, 8, 12), 2);
+        assert_eq!(mod_add(-47, 17, 8), 2);
     }
 
     #[test]
     fn test_modulo_subtraction() {
-        assert_eq!(sub(1, 2, 10), 9);
-        assert_eq!(sub(6, 8, 12), 10);
-        assert_eq!(sub(-47, 17, 8), 0);
+        assert_eq!(mod_sub(1, 2, 10), 9);
+        assert_eq!(mod_sub(6, 8, 12), 10);
+        assert_eq!(mod_sub(-47, 17, 8), 0);
+    }
+
+    #[test]
+    fn test_modulo_multiplication() {
+        assert_eq!(mod_mul(1, 2, 10), 2);
+        assert_eq!(mod_mul(6, 8, 12), 0);
+        assert_eq!(mod_mul(-47, 17, 8), 1);
     }
 }
