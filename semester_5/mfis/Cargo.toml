@@ -1,3 +1,6 @@
 [workspace]
-members = ["caesar_cipher"]
+members = [
+    "modulo",
+    "caesar_cipher",
+]
 resolver = "2"
