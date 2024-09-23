@@ -1,14 +1,12 @@
+from playwright.sync_api import Page
+
 from pages.login_po import LoginPage
 from pages.products_po import ProductsPage
 
 
-def test_sort_products_low_to_high(page):
+def test_products_sorting(page: Page):
     login_page = LoginPage(page)
-    login_page.open()
-
-    login_page.input_username("standard_user")
-    login_page.input_password("secret_sauce")
-    login_page.click_login()
+    login_page.login("standard_user", "secret_sauce")
 
     products_page = ProductsPage(page)
     products_page.sort_products()
