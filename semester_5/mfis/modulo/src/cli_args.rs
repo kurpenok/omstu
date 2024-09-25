@@ -3,6 +3,15 @@ use clap::Parser;
 use clap::Subcommand;
 
 #[derive(Args)]
+pub struct Gcd {
+    #[arg(long)]
+    pub a: i32,
+
+    #[arg(long)]
+    pub b: i32,
+}
+
+#[derive(Args)]
 pub struct Invert {
     #[arg(long)]
     pub a: i32,
@@ -14,6 +23,7 @@ pub struct Invert {
 #[derive(Subcommand)]
 pub enum Commands {
     Invert(Invert),
+    Gcd(Gcd),
 }
 
 #[derive(Parser)]
