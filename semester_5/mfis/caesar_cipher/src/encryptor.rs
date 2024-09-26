@@ -3,9 +3,13 @@ pub fn encrypt(abc: &Vec<char>, s: &String, key: usize) -> String {
     let key = key % abc.len();
 
     for c in s.chars() {
-        let encrypted_c_index =
-            (abc.iter().position(|symbol| *symbol == c).unwrap() + key) % abc.len();
-        encrypted_s.push(abc[encrypted_c_index]);
+        let c_position = abc.iter().position(|symbol| *symbol == c);
+        if c_position.is_none() {
+            encrypted_s.push(c);
+        } else {
+            let encrypted_c_index = (c_position.unwrap() + key) % abc.len();
+            encrypted_s.push(abc[encrypted_c_index]);
+        }
     }
 
     encrypted_s
