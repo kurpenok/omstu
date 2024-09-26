@@ -35,7 +35,8 @@ pub fn cli_decrypt(data: &Decrypt) {
             let key = mod_add(0, k as i32, m) as usize;
 
             println!(
-                "[+] Decrypted string: {}",
+                "[+] Decrypted string (key: {}): {}",
+                key,
                 decrypt(&abc, &data.message, key)
             );
         }
