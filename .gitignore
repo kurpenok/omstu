@@ -1225,3 +1225,6 @@ catboost_info
 
 # Dumped model files
 *.dump
+
+# Playwright report
+report.html
