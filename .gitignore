@@ -1228,3 +1228,6 @@ catboost_info
 
 # Playwright report
 report.html
+
+# Spam data
+spam_data
