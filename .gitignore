@@ -1231,3 +1231,6 @@ report.html
 
 # Spam data
 spam_data
+
+# Dump files
+dumps
