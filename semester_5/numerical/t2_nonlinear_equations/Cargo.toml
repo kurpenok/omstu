@@ -1,0 +1,6 @@
+[package]
+name = "t2_nonlinear_equations"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
