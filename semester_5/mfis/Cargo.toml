@@ -2,5 +2,6 @@
 members = [
     "modulo",
     "caesar_cipher",
+    "affine_cipher",
 ]
 resolver = "2"
