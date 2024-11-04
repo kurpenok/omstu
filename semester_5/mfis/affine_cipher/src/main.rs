@@ -1,5 +1,4 @@
-pub mod analysis;
+mod analysis;
+mod cli_args;
 
-fn main() {
-    println!("Hello, world!");
-}
+fn main() {}
