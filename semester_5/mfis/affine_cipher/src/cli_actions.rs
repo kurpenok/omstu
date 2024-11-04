@@ -1,5 +1,6 @@
 use crate::{
-    cli_args::{Decrypt, Encrypt},
+    analysis::{get_frequency, get_most_common_chars},
+    cli_args::{Analysis, Decrypt, Encrypt},
     decryptor::decrypt,
     encryptor::encrypt,
 };
@@ -24,4 +25,11 @@ pub fn cli_decrypt(data: &Decrypt) {
             );
         }
     }
+}
+
+pub fn cli_analysis(data: &Analysis) {
+    println!(
+        "[+] Most common char: {:?}",
+        get_most_common_chars(&get_frequency(&data.message), 2)
+    );
 }

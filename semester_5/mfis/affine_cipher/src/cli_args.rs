@@ -26,10 +26,17 @@ pub struct Decrypt {
     pub message: String,
 }
 
+#[derive(Args)]
+pub struct Analysis {
+    #[arg(long)]
+    pub message: String,
+}
+
 #[derive(Subcommand)]
 pub enum Commands {
     Encrypt(Encrypt),
     Decrypt(Decrypt),
+    Analysis(Analysis),
 }
 
 #[derive(Parser)]
