@@ -24,6 +24,12 @@ pub struct Decrypt {
 
     #[arg(long)]
     pub message: String,
+
+    #[arg(long)]
+    pub a: Option<i32>,
+
+    #[arg(long)]
+    pub b: Option<i32>,
 }
 
 #[derive(Args)]
