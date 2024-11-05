@@ -3,5 +3,6 @@ members = [
     "modulo",
     "caesar_cipher",
     "affine_cipher",
+    "open_text_model",
 ]
 resolver = "2"
