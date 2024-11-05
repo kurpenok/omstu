@@ -1,4 +1,4 @@
-use crate::{cli_args::Entropy, k_gram::get_k_grams_entropy};
+use crate::{cli_args::Entropy, k_gram::get_k_grams_entropy, plot::show_entropy};
 
 pub fn cli_entropy(data: &Entropy) {
     let abc: Vec<char> = data.abc.chars().collect();
@@ -17,4 +17,6 @@ pub fn cli_entropy(data: &Entropy) {
 
         entropies.push(k_grams_entropy);
     }
+
+    show_entropy(&entropies, &data.path);
 }

@@ -1,6 +1,7 @@
 mod cli_actions;
 mod cli_args;
 mod k_gram;
+mod plot;
 
 use clap::Parser;
 use cli_actions::cli_entropy;
