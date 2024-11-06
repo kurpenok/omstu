@@ -1,6 +1,7 @@
 mod blocks;
 mod cli_actions;
 mod cli_args;
+mod crack;
 mod decoder;
 mod decryptor;
 mod encoder;
