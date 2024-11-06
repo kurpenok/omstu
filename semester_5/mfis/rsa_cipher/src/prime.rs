@@ -2,7 +2,7 @@ use num_bigint::{BigInt, RandBigInt, ToBigInt};
 use num_traits::{One, Zero};
 use rand::thread_rng;
 
-fn is_prime(n: &BigInt) -> bool {
+pub fn is_prime(n: &BigInt) -> bool {
     if n <= &BigInt::one() {
         return false;
     } else if n == &BigInt::from(2) {
