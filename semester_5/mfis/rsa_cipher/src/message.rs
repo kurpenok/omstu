@@ -9,6 +9,20 @@ pub fn encode_message(abc: &HashMap<char, BigInt>, message: &String) -> Vec<BigI
         .collect()
 }
 
+pub fn decode_message(abc: &[char], encoded_message: &[BigInt]) -> String {
+    let encoded_message: String = encoded_message
+        .iter()
+        .map(|block| block.to_string())
+        .collect();
+
+    let mut message = String::new();
+    for c in encoded_message.chars() {
+        message.push(abc[c.to_digit(10).unwrap() as usize]);
+    }
+
+    message
+}
+
 fn validate_and_convert_blocks(message_blocks: Vec<String>) -> Vec<BigInt> {
     let mut message_blocks = message_blocks;
 
@@ -74,6 +88,18 @@ mod test {
                 10.to_bigint().unwrap()
             ]
         );
+    }
+
+    #[test]
+    fn test_decode_message() {
+        let abc: Vec<char> = "abcdefghij".chars().collect();
+        let encoded_message = vec![
+            1110.to_bigint().unwrap(),
+            99.to_bigint().unwrap(),
+            101.to_bigint().unwrap(),
+            1.to_bigint().unwrap(),
+        ];
+        assert_eq!(decode_message(&abc, &encoded_message), "bbbajjbabb");
     }
 
     #[test]
