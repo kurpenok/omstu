@@ -1,3 +1,4 @@
+mod decryptor;
 mod encryptor;
 mod gcd;
 mod invert;
