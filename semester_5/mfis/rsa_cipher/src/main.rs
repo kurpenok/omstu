@@ -12,7 +12,7 @@ mod keygen;
 mod prime;
 
 use clap::Parser;
-use cli_actions::{cli_decrypt, cli_encrypt, cli_generate};
+use cli_actions::{cli_crack, cli_decrypt, cli_encrypt, cli_generate};
 use cli_args::{Cli, Commands};
 
 fn main() {
@@ -22,6 +22,7 @@ fn main() {
         Some(Commands::Generate(data)) => cli_generate(data),
         Some(Commands::Encrypt(data)) => cli_encrypt(data),
         Some(Commands::Decrypt(data)) => cli_decrypt(data),
+        Some(Commands::Crack(data)) => cli_crack(data),
         None => {
             println!("[-] Error reading parameters!");
         }

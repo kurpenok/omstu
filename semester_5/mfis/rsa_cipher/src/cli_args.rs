@@ -44,11 +44,27 @@ pub struct Decrypt {
     pub n: i32,
 }
 
+#[derive(Args)]
+pub struct Crack {
+    #[arg(long)]
+    pub abc: String,
+
+    #[arg(long)]
+    pub message: String,
+
+    #[arg(long)]
+    pub e: i32,
+
+    #[arg(long)]
+    pub n: i32,
+}
+
 #[derive(Subcommand)]
 pub enum Commands {
     Generate(Generate),
     Encrypt(Encrypt),
     Decrypt(Decrypt),
+    Crack(Crack),
 }
 
 #[derive(Parser)]

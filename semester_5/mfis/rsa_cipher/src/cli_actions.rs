@@ -4,7 +4,8 @@ use num_bigint::BigInt;
 
 use crate::{
     blocks::to_blocks,
-    cli_args::{Decrypt, Encrypt, Generate},
+    cli_args::{Crack, Decrypt, Encrypt, Generate},
+    crack::crack,
     decoder::decode,
     decryptor::decrypt,
     encoder::encode,
@@ -60,6 +61,29 @@ pub fn cli_decrypt(data: &Decrypt) {
         .collect::<Vec<BigInt>>();
 
     let decrypted_message = decrypt(&encrypted_message, &d, &n);
+    let message = decode(&decode_abc, &decrypted_message);
+
+    println!("[+] Decrypted message: {}", message);
+}
+
+pub fn cli_crack(data: &Crack) {
+    let mut decode_abc: HashMap<BigInt, char> = HashMap::new();
+    for (i, c) in data.abc.chars().enumerate() {
+        decode_abc.insert(BigInt::from(i + 10), c);
+    }
+    decode_abc.insert(BigInt::from(99), ' ');
+
+    let e = BigInt::from(data.e);
+    let n = BigInt::from(data.n);
+    let rsa_keys = crack(&e, &n);
+
+    let encrypted_message = data
+        .message
+        .split_whitespace()
+        .filter_map(|code| code.parse::<BigInt>().ok())
+        .collect::<Vec<BigInt>>();
+
+    let decrypted_message = decrypt(&encrypted_message, &rsa_keys.d, &n);
     let message = decode(&decode_abc, &decrypted_message);
 
     println!("[+] Decrypted message: {}", message);
