@@ -45,17 +45,14 @@ mod test {
             gcd(&6.to_bigint().unwrap(), &4.to_bigint().unwrap()),
             2.to_bigint().unwrap()
         );
-
         assert_eq!(
             gcd(&10.to_bigint().unwrap(), &5.to_bigint().unwrap()),
             5.to_bigint().unwrap()
         );
-
         assert_eq!(
             gcd(&19.to_bigint().unwrap(), &17.to_bigint().unwrap()),
             1.to_bigint().unwrap()
         );
-
         assert_eq!(
             gcd(&20.to_bigint().unwrap(), &20.to_bigint().unwrap()),
             20.to_bigint().unwrap()
