@@ -22,10 +22,10 @@ pub fn is_prime(n: &BigInt) -> bool {
     true
 }
 
-pub fn generate_prime(bits: usize) -> BigInt {
+pub fn generate_prime(bits: u64) -> BigInt {
     let mut rng = thread_rng();
     loop {
-        let number = rng.gen_bigint(bits as u64);
+        let number = rng.gen_bigint(bits);
         if is_prime(&number) {
             break number;
         }
