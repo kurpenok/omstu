@@ -1,3 +1,4 @@
+mod encrypt;
 mod gcd;
 mod invert;
 mod keygen;
