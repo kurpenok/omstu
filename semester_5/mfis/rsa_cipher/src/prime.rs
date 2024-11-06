@@ -1,4 +1,4 @@
-use num_bigint::{BigInt, RandBigInt, ToBigInt};
+use num_bigint::{BigInt, RandBigInt};
 use num_traits::{One, Zero};
 use rand::thread_rng;
 
@@ -7,7 +7,7 @@ pub fn is_prime(n: &BigInt) -> bool {
         return false;
     } else if n == &BigInt::from(2) {
         return true;
-    } else if (n % 2.to_bigint().unwrap()).is_zero() {
+    } else if (n % BigInt::from(2)).is_zero() {
         return false;
     }
 
