@@ -4,7 +4,7 @@ fn encrypt_block(block: &BigInt, e: &BigInt, n: &BigInt) -> BigInt {
     block.modpow(e, n)
 }
 
-pub fn encrypt(message_blocks: &Vec<BigInt>, e: &BigInt, n: &BigInt) -> Vec<BigInt> {
+pub fn encrypt(message_blocks: &[BigInt], e: &BigInt, n: &BigInt) -> Vec<BigInt> {
     message_blocks
         .iter()
         .map(|block| encrypt_block(&block, e, n))
