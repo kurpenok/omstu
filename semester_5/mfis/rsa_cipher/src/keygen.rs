@@ -1,9 +1,7 @@
 use num_bigint::BigInt;
-use num_bigint::ToBigInt;
-use num_traits::One;
 
-use crate::gcd::gcd;
 use crate::invert::invert;
+use crate::prime::generate_prime;
 
 #[derive(Debug, PartialEq)]
 pub struct RSAKeys {
@@ -12,15 +10,14 @@ pub struct RSAKeys {
     pub n: BigInt,
 }
 
-pub fn generate_rsa_keys(p: &BigInt, q: &BigInt) -> RSAKeys {
+pub fn generate_rsa_keys(p: &BigInt, q: &BigInt, e: Option<&BigInt>) -> RSAKeys {
     let n = p * q;
-    let phi = (p - 1.to_bigint().unwrap()) * (q - 1.to_bigint().unwrap());
+    let phi = (p - BigInt::from(1)) * (q - BigInt::from(1));
 
-    let mut e = 3.to_bigint().unwrap(); // Usually 65537
-    while gcd(&e, &phi) != BigInt::one() {
-        e += 2.to_bigint().unwrap();
-    }
-
+    let e = match e {
+        Some(e) => e.clone(),
+        None => generate_prime(16),
+    };
     let d = invert(&e, &phi).unwrap();
 
     RSAKeys { e, d, n }
@@ -32,13 +29,13 @@ mod test {
 
     #[test]
     fn test_generate_rsa_keys() {
-        let p = 53.to_bigint().unwrap();
-        let q = 59.to_bigint().unwrap();
+        let p = BigInt::from(53);
+        let q = BigInt::from(59);
         let rsa_keys = RSAKeys {
-            e: 3.to_bigint().unwrap(),
-            d: 2011.to_bigint().unwrap(),
-            n: 3127.to_bigint().unwrap(),
+            e: BigInt::from(3),
+            d: BigInt::from(2011),
+            n: BigInt::from(3127),
         };
-        assert_eq!(generate_rsa_keys(&p, &q), rsa_keys);
+        assert_eq!(generate_rsa_keys(&p, &q, Some(&BigInt::from(3))), rsa_keys);
     }
 }
