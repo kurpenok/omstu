@@ -1,1 +1,3 @@
+mod gcd;
+
 fn main() {}
