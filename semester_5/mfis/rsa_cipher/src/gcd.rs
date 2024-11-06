@@ -35,42 +35,33 @@ pub fn extended_gcd(a: &BigInt, b: &BigInt, coefs: &mut BezuCoefs) -> BigInt {
 
 #[cfg(test)]
 mod test {
-    use num_bigint::ToBigInt;
-
     use super::*;
 
     #[test]
     fn test_bigint_gcd() {
-        assert_eq!(
-            gcd(&6.to_bigint().unwrap(), &4.to_bigint().unwrap()),
-            2.to_bigint().unwrap()
-        );
-        assert_eq!(
-            gcd(&10.to_bigint().unwrap(), &5.to_bigint().unwrap()),
-            5.to_bigint().unwrap()
-        );
-        assert_eq!(
-            gcd(&19.to_bigint().unwrap(), &17.to_bigint().unwrap()),
-            1.to_bigint().unwrap()
-        );
-        assert_eq!(
-            gcd(&20.to_bigint().unwrap(), &20.to_bigint().unwrap()),
-            20.to_bigint().unwrap()
-        );
+        let a = BigInt::from(6);
+        let b = BigInt::from(4);
+        let c = BigInt::from(2);
+
+        let d = BigInt::from(13);
+        let e = BigInt::from(19);
+
+        assert_eq!(gcd(&a, &b), c);
+        assert_eq!(gcd(&c, &c), c);
+        assert_eq!(gcd(&d, &e), BigInt::one());
     }
 
     #[test]
     fn test_bigint_extended_gcd() {
+        let a = BigInt::from(3);
+        let b = BigInt::from(7);
         let mut coefs = BezuCoefs {
-            alpha: 0.to_bigint().unwrap(),
-            beta: 0.to_bigint().unwrap(),
+            alpha: BigInt::zero(),
+            beta: BigInt::zero(),
         };
 
-        assert_eq!(
-            extended_gcd(&3.to_bigint().unwrap(), &7.to_bigint().unwrap(), &mut coefs),
-            1.to_bigint().unwrap()
-        );
-        assert_eq!(coefs.alpha, -2.to_bigint().unwrap());
-        assert_eq!(coefs.beta, 1.to_bigint().unwrap());
+        assert_eq!(extended_gcd(&a, &b, &mut coefs), BigInt::one());
+        assert_eq!(coefs.alpha, BigInt::from(-2));
+        assert_eq!(coefs.beta, BigInt::from(1));
     }
 }
