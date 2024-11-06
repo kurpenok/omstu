@@ -1,5 +1,6 @@
-use num_bigint::{BigInt, ToBigInt};
+use num_bigint::{BigInt, RandBigInt, ToBigInt};
 use num_traits::{One, Zero};
+use rand::thread_rng;
 
 fn is_prime(n: &BigInt) -> bool {
     if n <= &BigInt::one() {
@@ -19,6 +20,16 @@ fn is_prime(n: &BigInt) -> bool {
     }
 
     true
+}
+
+pub fn generate_prime(bits: usize) -> BigInt {
+    let mut rng = thread_rng();
+    loop {
+        let number = rng.gen_bigint(bits as u64);
+        if is_prime(&number) {
+            break number;
+        }
+    }
 }
 
 #[cfg(test)]
