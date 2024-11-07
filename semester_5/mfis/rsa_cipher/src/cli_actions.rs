@@ -10,12 +10,19 @@ use crate::{
     decryptor::decrypt,
     encoder::encode,
     encryptor::encrypt,
+    gcd::gcd,
     keygen::generate_rsa_keys,
+    prime::is_prime,
 };
 
 pub fn cli_generate(data: &Generate) {
     let p = BigInt::from(data.p);
     let q = BigInt::from(data.q);
+    if !is_prime(&p) || !is_prime(&q) {
+        println!("[+] P and Q must be prime!");
+        return;
+    }
+
     let e = match data.e {
         Some(e) => Some(BigInt::from(e)),
         None => None,
@@ -25,6 +32,13 @@ pub fn cli_generate(data: &Generate) {
     let e = rsa_keys.e;
     let d = rsa_keys.d;
     let n = rsa_keys.n;
+
+    let phi = (p - BigInt::from(1)) * (q - BigInt::from(1));
+    if gcd(&e, &phi) != BigInt::from(1) {
+        println!("[-] Failed to generate E!");
+        return;
+    }
+
     println!("[+] Generated keys (e, d, n): {}, {}, {}", e, d, n);
 }
 
