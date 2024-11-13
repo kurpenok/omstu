@@ -1230,7 +1230,10 @@ catboost_info
 report.html
 
 # Spam data
-spam_data
+spam_data/
 
 # Dump files
-dumps
+dumps/
+
+# Open text model result
+open_text_model_entropy_plot.html
