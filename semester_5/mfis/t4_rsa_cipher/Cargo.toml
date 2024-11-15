@@ -1,0 +1,10 @@
+[package]
+name = "t4_rsa_cipher"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+num-bigint = { version = "0.4.6", features = ["rand"] }
+num-traits = "0.2.19"
+rand = "0.8.5"
+clap = { version = "4.5.17", features = ["derive"] }
