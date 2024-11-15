@@ -1,9 +1,0 @@
-[workspace]
-members = [
-    "modulo",
-    "caesar_cipher",
-    "affine_cipher",
-    "open_text_model",
-    "rsa_cipher",
-]
-resolver = "2"
