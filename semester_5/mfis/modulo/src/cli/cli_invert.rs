@@ -1,4 +1,4 @@
-use crate::{cli::console_read, invert::invert, SEPARATOR};
+use crate::{cli::console_read, modules::invert::invert, SEPARATOR};
 
 pub fn cli_invert() {
     let a = console_read("[>] Enter number: ").parse::<usize>();

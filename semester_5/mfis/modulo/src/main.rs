@@ -1,14 +1,8 @@
-pub mod gcd;
-pub mod invert;
-pub mod ops;
+pub mod modules;
 
 mod cli;
-mod cli_gcd;
-mod cli_invert;
 
-use cli::console_read;
-use cli_gcd::cli_gcd;
-use cli_invert::cli_invert;
+use cli::{cli_gcd::cli_gcd, cli_invert::cli_invert, console_read};
 
 static SEPARATOR: &str = "==================================================";
 

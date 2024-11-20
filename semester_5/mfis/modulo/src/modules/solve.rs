@@ -1,9 +1,6 @@
 use std::collections::HashSet;
 
-use crate::{
-    gcd::gcd,
-    ops::{mod_add, mod_div},
-};
+use super::{gcd::gcd, ops::mod_add};
 
 fn is_solution(x: i32, y: i32, a: i32, b: i32, c: i32, d: i32, m: i32) -> bool {
     let eq_1: i32 = a * x + y;
@@ -44,7 +41,7 @@ fn solve_comparison(a: i32, b: i32, m: i32) -> Option<Vec<Vec<i32>>> {
 
     let mut solutions: Vec<Vec<i32>> = Vec::new();
     if divisor == 1 {
-        let solution = mod_div(b, a, m);
+        let solution = mod_add(b, a, m);
         if solution.is_none() {
             println!("[-] No inverse for given number!");
             return None;

@@ -1,3 +1,6 @@
+pub mod cli_gcd;
+pub mod cli_invert;
+
 use std::io::Write;
 
 pub fn console_read(prompt: &str) -> String {

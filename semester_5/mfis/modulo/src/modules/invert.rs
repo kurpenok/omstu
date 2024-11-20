@@ -1,4 +1,4 @@
-use crate::gcd::{extended_gcd, BezuCoefs};
+use super::gcd::{extended_gcd, BezuCoefs};
 
 pub fn invert(a: usize, m: usize) -> Option<usize> {
     let mut coefs = BezuCoefs::new();

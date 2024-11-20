@@ -1,4 +1,5 @@
-//pub mod gcd;
-//pub mod invert;
-//pub mod ops;
-//pub mod solve;
+pub mod modules;
+
+pub use modules::gcd;
+pub use modules::invert;
+pub use modules::ops;

@@ -1,6 +1,6 @@
 use crate::{
     cli::console_read,
-    gcd::{extended_gcd, BezuCoefs},
+    modules::gcd::{extended_gcd, BezuCoefs},
     SEPARATOR,
 };
 
