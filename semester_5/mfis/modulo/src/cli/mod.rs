@@ -1,5 +1,6 @@
 pub mod cli_gcd;
 pub mod cli_invert;
+pub mod cli_solve;
 
 use std::io::Write;
 

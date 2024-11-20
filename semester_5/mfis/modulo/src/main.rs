@@ -2,7 +2,7 @@ pub mod modules;
 
 mod cli;
 
-use cli::{cli_gcd::cli_gcd, cli_invert::cli_invert, console_read};
+use cli::{cli_gcd::cli_gcd, cli_invert::cli_invert, cli_solve::cli_solve, console_read};
 
 static SEPARATOR: &str = "==================================================";
 
@@ -23,8 +23,9 @@ fn main() {
         } else if action == "2" {
             cli_invert();
         } else if action == "3" {
+            cli_solve(false);
         } else if action == "4" {
-        } else {
+            cli_solve(true);
         }
     }
 }
