@@ -1,14 +1,14 @@
 use crate::gcd::{extended_gcd, BezuCoefs};
 
-pub fn invert(a: i32, m: i32) -> Option<i32> {
-    let mut coefs = BezuCoefs { alpha: 0, beta: 0 };
+pub fn invert(a: usize, m: usize) -> Option<usize> {
+    let mut coefs = BezuCoefs::new();
     let divider = extended_gcd(a, m, &mut coefs);
 
     if divider != 1 {
         return None;
     }
 
-    Some((coefs.alpha % m + m) % m)
+    Some((coefs.alpha % m as i32 + m as i32) as usize % m)
 }
 
 #[cfg(test)]
