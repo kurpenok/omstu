@@ -3,7 +3,13 @@ pub struct BezuCoefs {
     pub beta: i32,
 }
 
-pub fn gcd(a: i32, b: i32) -> i32 {
+impl BezuCoefs {
+    pub fn new() -> BezuCoefs {
+        BezuCoefs { alpha: 0, beta: 0 }
+    }
+}
+
+pub fn gcd(a: usize, b: usize) -> usize {
     if b == 0 {
         return a;
     } else {
@@ -11,7 +17,7 @@ pub fn gcd(a: i32, b: i32) -> i32 {
     }
 }
 
-pub fn extended_gcd(a: i32, b: i32, coefs: &mut BezuCoefs) -> i32 {
+pub fn extended_gcd(a: usize, b: usize, coefs: &mut BezuCoefs) -> usize {
     if a == 0 {
         coefs.alpha = 0;
         coefs.beta = 1;
@@ -21,7 +27,7 @@ pub fn extended_gcd(a: i32, b: i32, coefs: &mut BezuCoefs) -> i32 {
     let mut temp_coefs = BezuCoefs { alpha: 0, beta: 0 };
     let divider = extended_gcd(b % a, a, &mut temp_coefs);
 
-    coefs.alpha = temp_coefs.beta - (b / a) * temp_coefs.alpha;
+    coefs.alpha = temp_coefs.beta - (b / a) as i32 * temp_coefs.alpha;
     coefs.beta = temp_coefs.alpha;
 
     divider
@@ -41,7 +47,7 @@ mod test {
 
     #[test]
     fn test_extended_gcd() {
-        let mut coefs = BezuCoefs { alpha: 0, beta: 0 };
+        let mut coefs = BezuCoefs::new();
 
         assert_eq!(extended_gcd(3, 7, &mut coefs), 1);
         assert_eq!(coefs.alpha, -2);
