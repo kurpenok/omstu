@@ -8,6 +8,6 @@ pub fn show_entropy(entropies: &Vec<f64>, path: &Option<String>) {
 
     match path {
         Some(path) => plot.write_html(path),
-        None => plot.write_html("entropies.html"),
+        None => plot.write_html("open_text_model_entropy_plot.html"),
     }
 }
