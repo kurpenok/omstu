@@ -10,7 +10,7 @@ pub struct RSAKeys {
     pub n: BigInt,
 }
 
-pub fn generate_rsa_keys(p: &BigInt, q: &BigInt, e: Option<&BigInt>) -> RSAKeys {
+pub fn generate_rsa_keys(p: &BigInt, q: &BigInt, e: Option<&BigInt>) -> Option<RSAKeys> {
     let n = p * q;
     let phi = (p - BigInt::from(1)) * (q - BigInt::from(1));
 
@@ -18,9 +18,11 @@ pub fn generate_rsa_keys(p: &BigInt, q: &BigInt, e: Option<&BigInt>) -> RSAKeys 
         Some(e) => e.clone(),
         None => generate_prime(16),
     };
-    let d = invert(&e, &phi).unwrap();
 
-    RSAKeys { e, d, n }
+    match invert(&e, &phi) {
+        Some(d) => return Some(RSAKeys { e, d, n }),
+        None => None,
+    }
 }
 
 #[cfg(test)]
@@ -36,6 +38,9 @@ mod test {
             d: BigInt::from(2011),
             n: BigInt::from(3127),
         };
-        assert_eq!(generate_rsa_keys(&p, &q, Some(&BigInt::from(3))), rsa_keys);
+        assert_eq!(
+            generate_rsa_keys(&p, &q, Some(&BigInt::from(3))),
+            Some(rsa_keys)
+        );
     }
 }

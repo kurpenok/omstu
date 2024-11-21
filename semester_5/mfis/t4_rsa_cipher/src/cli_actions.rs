@@ -29,17 +29,22 @@ pub fn cli_generate(data: &Generate) {
     };
     let rsa_keys = generate_rsa_keys(&p, &q, e.as_ref());
 
-    let e = rsa_keys.e;
-    let d = rsa_keys.d;
-    let n = rsa_keys.n;
+    match rsa_keys {
+        Some(rsa_keys) => {
+            let e = rsa_keys.e;
+            let d = rsa_keys.d;
+            let n = rsa_keys.n;
 
-    let phi = (p - BigInt::from(1)) * (q - BigInt::from(1));
-    if gcd(&e, &phi) != BigInt::from(1) {
-        println!("[-] Failed to generate E!");
-        return;
+            let phi = (p - BigInt::from(1)) * (q - BigInt::from(1));
+            if gcd(&e, &phi) != BigInt::from(1) {
+                println!("[-] Failed to generate E!");
+                return;
+            }
+
+            println!("[+] Generated keys (e, d, n): {}, {}, {}", e, d, n);
+        }
+        None => println!("[-] Currect E irreversible!"),
     }
-
-    println!("[+] Generated keys (e, d, n): {}, {}, {}", e, d, n);
 }
 
 pub fn cli_encrypt(data: &Encrypt) {
