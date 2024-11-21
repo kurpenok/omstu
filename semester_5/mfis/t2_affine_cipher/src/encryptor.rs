@@ -8,7 +8,7 @@ pub fn encrypt(abc: &Vec<char>, s: &String, a: i32, b: i32) -> String {
             Some(c_index) => {
                 let c_index = c_index as i32;
                 let m = abc.len() as i32;
-                encrypted_s.push(abc[mod_add(0, a * c_index + b, m) as usize]);
+                encrypted_s.push(abc[mod_add(0, a * c_index + b, m as usize) as usize]);
             }
             None => encrypted_s.push(c),
         }

@@ -13,12 +13,12 @@ fn decrypt_helper(abc: &Vec<char>, s: &String, a: i32, b: i32) -> DecryptResult 
 
     for c in s.chars() {
         match abc.iter().position(|&symbol| symbol == c) {
-            Some(c_index) => match invert(a as i32, abc.len() as i32) {
+            Some(c_index) => match invert(a as usize, abc.len()) {
                 Some(inverted_a) => {
                     let c_index = c_index as i32;
                     let m = abc.len() as i32;
                     decrypted_s
-                        .push(abc[mod_add(0, inverted_a * (c_index - b as i32), m) as usize]);
+                        .push(abc[mod_add(0, inverted_a as i32 * (c_index - b), m as usize)]);
                 }
                 None => continue,
             },
