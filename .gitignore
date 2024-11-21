@@ -1237,3 +1237,6 @@ dumps/
 
 # Open text model result
 open_text_model_entropy_plot.html
+
+# NLTK data
+nltk_data/
