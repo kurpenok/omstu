@@ -13,3 +13,8 @@ class RestfulBookerAPI:
         url = f"{self.BASE_URL}/booking"
         response = requests.post(url, json=payload)
         return response
+
+    def delete_booking(self, booking_number):
+        url = f"{self.BASE_URL}/booking/{booking_number}"
+        response = requests.delete(url)
+        return response

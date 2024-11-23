@@ -59,3 +59,5 @@ class TestCreateBooking:
 
         response_json = response.json()
         validate(instance=response_json, schema=schema)
+
+        self.api.delete_booking(response.json()["bookingid"])
