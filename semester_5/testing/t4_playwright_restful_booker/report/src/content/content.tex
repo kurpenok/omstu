@@ -1,0 +1,180 @@
+\section{Подготовка окружения}
+
+Для создания виртуального окружения используем модуль \texttt{virtualenv}. Создание и активация окружения выполняется следующими командами:
+
+\begin{minted}[frame=single, baselinestretch=1]{bash}
+virtualenv3 venv && source ./venv/bin/activate    
+\end{minted}
+
+После активации виртуального окружения требуется установить модули для тестирования и для работы с \texttt{JSON}-схемами:
+
+\begin{minted}[frame=single, baselinestretch=1]{bash}
+pip3 install pytest-playwright jsonschema
+\end{minted}
+
+Чтобы была возможность повторно развернуть идентичное виртуальное окружение, зафиксируем требуемые зависимости в файле с зависимостями - \texttt{requirements.txt}:
+
+\begin{minted}[frame=single, baselinestretch=1]{bash}
+pip3 freeze > requirements.txt
+\end{minted}
+
+Для запуска тестов командой \texttt{pytest} создадим пустой файл \texttt{conftest.py}, чтобы определить корневую директорию проекта:
+
+\begin{minted}[frame=single, baselinestretch=1]{bash}
+touch conftest.py
+\end{minted}
+
+Виртуальное окружение готово к использованию!
+
+\section{Создание \texttt{API}-клиента}
+
+Так как одним из условий задания было конструирование запросов вне тест-кейсов, создадим файл с классом, содержащим функции для обращения к \texttt{API} сервиса:
+
+\begin{minted}[frame=single, baselinestretch=1]{python}
+# Библиотека для работы с запросами
+import requests
+
+
+class RestfulBookerAPI:
+BASE_URL = "https://restful-booker.herokuapp.com"
+
+# Функция для получения токена через API
+def get_token(self, payload):
+    url = f"{self.BASE_URL}/auth"
+    response = requests.post(url, json=payload)
+    return response
+
+# Функция для создания бронирования через API
+def create_booking(self, payload):
+    url = f"{self.BASE_URL}/booking"
+    response = requests.post(url, json=payload)
+    return response
+
+# Функция для удаления бронирования
+def delete_booking(self, booking_number):
+    url = f"{self.BASE_URL}/booking/{booking_number}"
+    response = requests.delete(url)
+    return response
+\end{minted}
+
+\section{Тестирование \texttt{API}-хэндлера получения токена}
+
+Для тестирования процесса получения токена нам нужно создать объект класса \texttt{RestfulBookingAPI}, вызвать метод для создания токена и сверить \texttt{JSON}-схему ответа сервиса с \texttt{JSON}-схемой ответа, указанной в документации:
+
+\begin{minted}[frame=single, baselinestretch=1]{python}
+from jsonschema import validate
+
+from api_client import RestfulBookerAPI
+
+
+class TestAuthToken:
+def setup_class(self):
+    self.api = RestfulBookerAPI()
+
+def test_get_token_success(self):
+    payload = {"username": "admin", "password": "password123"}
+
+    schema = {
+        "type": "object",
+        "properties": {"token": {"type": "string"}},
+        "required": ["token"],
+    }
+
+    response = self.api.get_token(payload)
+    assert (
+        response.status_code == 200
+    ), f"Expected status code 200, got {response.status_code}"
+
+    response_json = response.json()
+    validate(instance=response_json, schema=schema)
+\end{minted}
+
+\section{Тестирование \texttt{API}-хэндлера бронирования}
+
+Тестирование создания бронирования несколько отличается от тестирования получения токена: у запроса другая схема ответа сервиса бронирования, а также требуется удаление бронирования после завершения тестирования, так как тест не должен оставлять после себя сущности на сервере:
+
+\begin{minted}[frame=single, baselinestretch=1]{python}
+from jsonschema import validate
+
+from api_client import RestfulBookerAPI
+
+
+class TestCreateBooking:
+def setup_class(self):
+    self.api = RestfulBookerAPI()
+
+def test_create_booking_success(self):
+    payload = {
+        "firstname": "John",
+        "lastname": "Doe",
+        "totalprice": 123,
+        "depositpaid": True,
+        "bookingdates": {
+            "checkin": "2024-01-01",
+            "checkout": "2024-01-10",
+        },
+        "additionalneeds": "Breakfast",
+    }
+
+    schema = {
+        "type": "object",
+        "properties": {
+            "bookingid": {"type": "integer"},
+            "booking": {
+                "type": "object",
+                "properties": {
+                    "firstname": {"type": "string"},
+                    "lastname": {"type": "string"},
+                    "totalprice": {"type": "integer"},
+                    "depositpaid": {"type": "boolean"},
+                    "bookingdates": {
+                        "type": "object",
+                        "properties": {
+                            "checkin": {"type": "string"},
+                            "checkout": {"type": "string"},
+                        },
+                        "required": ["checkin", "checkout"],
+                    },
+                    "additionalneeds": {"type": "string"},
+                },
+                "required": [
+                    "firstname",
+                    "lastname",
+                    "totalprice",
+                    "depositpaid",
+                    "bookingdates",
+                    "additionalneeds",
+                ],
+            },
+        },
+        "required": ["bookingid", "booking"],
+    }
+
+    response = self.api.create_booking(payload)
+
+    assert (
+        response.status_code == 200
+    ), f"Expected status code 200, got {response.status_code}"
+
+    response_json = response.json()
+    validate(instance=response_json, schema=schema)
+
+    self.api.delete_booking(response.json()["bookingid"])
+\end{minted}
+
+\section{Запуск тестирования и проверка результатов}
+
+После запуска тестов командой \texttt{pytest}, получаем следущий вывод:
+
+\begin{minted}[frame=single, baselinestretch=1]{bash}
+========================== test session starts ========================
+platform linux -- Python 3.12.7, pytest-8.3.3, pluggy-1.5.0
+rootdir: .../omstu/semester_5/testing/t4_playwright_restful_booker
+plugins: base-url-2.1.0, playwright-0.5.2
+collected 2 items                                        
+
+tests/test_auth.py .                                             [ 50%]
+tests/test_booking.py .                                          [100%]
+
+=========================== 2 passed in 3.80s =========================
+\end{minted}
