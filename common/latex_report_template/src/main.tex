@@ -1,0 +1,24 @@
+% Аrticle использует только шрифты с размером 10-12pt
+% Extarticle позволяет использть шрифты любых размеров
+\documentclass[14pt, a4paper]{extarticle}
+
+% Языковой пакет. Альтернатива пакету babel
+\usepackage{polyglossia}
+
+\usepackage{xcolor}
+
+% Поля по ГОСТ 2021
+\usepackage[left=3cm, right=1.5cm, top=2cm, bottom=2cm]{geometry}
+
+% Неизменная классика
+\setmainfont{Times New Roman}
+\newfontfamily \cyrillicfont{Times New Roman}
+
+\setlength{\parindent}{1.25cm}
+
+\begin{document}
+
+\include{content/title}
+\linespread{1.5}
+
+\end{document}
