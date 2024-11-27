@@ -1,0 +1,43 @@
+% Аrticle использует только шрифты с размером 10-12pt
+% Extarticle позволяет использть шрифты любых размеров
+\documentclass[14pt, a4paper]{extarticle}
+
+% Подключение файла с пакетами
+\input{settings/packages}
+
+\begin{document}
+
+% Титульный лист
+\include{content/title}
+
+% Подключение форматирования
+\include{settings/format}
+
+% Подключение кастомных команд
+\include{settings/commands}
+
+% Список исполнителей
+\include{content/performers}
+
+% Синопсис
+\include{content/synopsis}
+
+% Содержание (toc - table of content)
+\include{content/toc}
+
+% Введение
+\include{content/introduction}
+
+% Контент
+\include{content/content}
+
+% Заключение
+\include{content/conclusion}
+
+% Список использованных источников
+\include{content/references}
+
+% Приложения
+\include{content/applications}
+
+\end{document}
