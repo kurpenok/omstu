@@ -1,0 +1,18 @@
+% Включение междустрочных интервалов 1.5 см
+% На титульном листе интервалы 1 см
+\linespread{1.5}
+
+% Форматирование содержания
+\renewcommand{\cfttoctitlefont}{\centering \normalfont}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+\renewcommand{\cftsubsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+\renewcommand{\contentsname}{СОДЕРЖАНИЕ}
+
+% Форматирование заголовков и подзаголовков
+\titleformat{\section}{\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\bfseries}{\thesubsection}{1em}{}
+
+% Замена заголовка у списка источников
+\renewcommand{\bibsection}{\centering \normalfont СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
