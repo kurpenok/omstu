@@ -5,39 +5,42 @@
 % Подключение файла с пакетами
 \input{settings/packages}
 
+% Подключение кастомных команд
+\input{settings/commands}
+
+% Подключение макросов
+\input{settings/macros}
+
 \begin{document}
 
 % Титульный лист
-\include{content/title}
+\include{content/p1_title}
 
 % Подключение форматирования
-\include{settings/format}
-
-% Подключение кастомных команд
-\include{settings/commands}
+\input{settings/format}
 
 % Список исполнителей
-\include{content/performers}
+\include{content/p2_performers}
 
 % Синопсис
-\include{content/synopsis}
+\include{content/p3_synopsis}
 
 % Содержание (toc - table of content)
-\include{content/toc}
+\include{content/p4_toc}
 
 % Введение
-\include{content/introduction}
+\include{content/p5_introduction}
 
-% Контент
-\include{content/content}
+% Основной материал
+\include{content/p6_content}
 
 % Заключение
-\include{content/conclusion}
+\include{content/p7_conclusion}
 
 % Список использованных источников
-\include{content/references}
+\include{content/p8_references}
 
 % Приложения
-\include{content/applications}
+\include{content/p9_applications}
 
 \end{document}
