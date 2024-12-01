@@ -17,11 +17,13 @@ pub fn encrypt(abc: &Vec<char>, s: &String, key: usize) -> String {
 
 #[cfg(test)]
 mod test {
+    use crate::{EN_ABC, RU_ABC};
+
     use super::*;
 
     #[test]
     fn test_encrypt_english_string() {
-        let abc = "abcdefghijklmnopqrstuvwxyz".chars().collect::<Vec<char>>();
+        let abc = EN_ABC.chars().collect::<Vec<char>>();
 
         assert_eq!(encrypt(&abc, &"abc".to_string(), 1), "bcd");
         assert_eq!(encrypt(&abc, &"xyz".to_string(), 1), "yza");
@@ -29,9 +31,7 @@ mod test {
 
     #[test]
     fn test_encrypt_russian_string() {
-        let abc = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
-            .chars()
-            .collect::<Vec<char>>();
+        let abc = RU_ABC.chars().collect::<Vec<char>>();
 
         assert_eq!(encrypt(&abc, &"абв".to_string(), 1), "бвг");
         assert_eq!(encrypt(&abc, &"эюя".to_string(), 1), "юяа");

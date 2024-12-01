@@ -1,25 +1,25 @@
-use clap::Parser;
-use cli_actions::{cli_decrypt, cli_encrypt};
-use cli_args::{Cli, Commands};
+mod cli;
+mod modules;
 
-mod cli_actions;
-mod cli_args;
-mod decryptor;
-mod encryptor;
+use cli::{cli_decrypt::cli_decrypt, cli_encrypt::cli_encrypt, console_read};
+
+static SEPARATOR: &str = "==================================================";
+static EN_ABC: &str = "abcdefghijklmnopqrstuvwxyz";
+static RU_ABC: &str = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 
 fn main() {
-    // Usage:
-    // cargo run -- encrypt --abc <abc> --message <message> --key <key>
-    // cargo run -- decrypt --abc <abc> --message <message> --key <key>
-    // cargo run -- decrypt --abc <abc> --message <message>
+    println!("{}", SEPARATOR);
+    println!("[+] Available actions (0 for quit):");
+    println!("[1] Encrypt text");
+    println!("[2] Decrypt text");
+    println!("{}", SEPARATOR);
 
-    let cli = Cli::parse();
-
-    match &cli.command {
-        Some(Commands::Encrypt(data)) => cli_encrypt(data),
-        Some(Commands::Decrypt(data)) => cli_decrypt(data),
-        None => {
-            println!("[-] Error reading parameters!");
+    loop {
+        match console_read("[>] Enter action number: ").as_str() {
+            "0" => break,
+            "1" => cli_encrypt(),
+            "2" => cli_decrypt(),
+            _ => println!("[-] Incorrect value!"),
         }
     }
 }
