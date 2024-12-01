@@ -1,22 +1,25 @@
-mod analysis;
-mod cli_actions;
-mod cli_args;
-mod decryptor;
-mod encryptor;
+mod cli;
+mod modules;
 
-use clap::Parser;
-use cli_actions::{cli_analysis, cli_decrypt, cli_encrypt};
-use cli_args::{Cli, Commands};
+use cli::{cli_decrypt::cli_decrypt, cli_encrypt::cli_encrypt, console_read};
+
+static SEPARATOR: &str = "==================================================";
+static EN_ABC: &str = "abcdefghijklmnopqrstuvwxyz";
+static RU_ABC: &str = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 
 fn main() {
-    let cli = Cli::parse();
+    println!("{}", SEPARATOR);
+    println!("[+] Available actions (0 for quit):");
+    println!("[1] Encrypt text");
+    println!("[2] Decrypt text");
+    println!("{}", SEPARATOR);
 
-    match &cli.command {
-        Some(Commands::Encrypt(data)) => cli_encrypt(data),
-        Some(Commands::Decrypt(data)) => cli_decrypt(data),
-        Some(Commands::Analysis(data)) => cli_analysis(data),
-        None => {
-            println!("[-] Error reading parameters!");
+    loop {
+        match console_read("[>] Enter action number: ").as_str() {
+            "0" => break,
+            "1" => cli_encrypt(),
+            "2" => cli_decrypt(),
+            _ => println!("[-] Incorrect value!"),
         }
     }
 }
