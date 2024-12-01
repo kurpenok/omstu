@@ -74,6 +74,10 @@ mod test {
 
     #[test]
     fn test_modulo_division() {
+        assert_eq!(mod_div(1, 2, 6), None);
+        assert_eq!(mod_div(5, 8, 64), None);
+        assert_eq!(mod_div(7, 32, 128), None);
+
         assert_eq!(mod_div(1, 2, 7), Some(4));
         assert_eq!(mod_div(6, 8, 17), Some(5));
         assert_eq!(mod_div(10, 17, 19), Some(14));
