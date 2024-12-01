@@ -14,5 +14,22 @@
 \titleformat{\section}{\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}{\bfseries}{\thesubsection}{1em}{}
 
-% Замена заголовка у списка источников
+% Форматирование подписи к рисункам
+\captionsetup[figure]{name={Рисунок}, labelsep=endash}
+
+% Форматирование подписи к листингам
+\captionsetup[lstlisting]{font={normal, rm}, labelsep=endash}
+\lstset{
+    backgroundcolor=\color{white},
+    basicstyle=\ttfamily\small,
+    captionpos=b,
+    tabsize=4,
+    keywordstyle=\color{blue},
+    stringstyle=\color{olive},
+    commentstyle=\color{gray},
+}
+\renewcommand{\lstlistingname}{Листинг}
+\renewcommand{\lstlistlistingname}{Листинги}
+
+% Форматирование заголовка списка источников
 \renewcommand{\bibsection}{\centering \normalfont СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
