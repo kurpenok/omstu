@@ -10,7 +10,7 @@ fn main() {
     println!("{}", SEPARATOR);
     println!("[+] Available actions (0 for quit):");
     println!("[1] Find GCD");
-    println!("[2] Invert by modulo");
+    println!("[2] Get inverse by modulo");
     println!("[3] Solve comparison by modulo");
     println!("[4] Solve comparisons system by modulo");
     println!("{}", SEPARATOR);

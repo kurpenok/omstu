@@ -1,4 +1,4 @@
-use super::invert::invert;
+use super::inverse::get_inverse;
 
 pub fn mod_add(a: i32, b: i32, m: usize) -> usize {
     let mut sum = a + b;
@@ -31,8 +31,8 @@ pub fn mod_mul(a: i32, b: i32, m: usize) -> usize {
 }
 
 pub fn mod_div(a: usize, b: usize, m: usize) -> Option<usize> {
-    match invert(b, m) {
-        Some(inverted_b) => Some(a * inverted_b % m),
+    match get_inverse(b, m) {
+        Some(inverse_b) => Some(a * inverse_b % m),
         None => None,
     }
 }

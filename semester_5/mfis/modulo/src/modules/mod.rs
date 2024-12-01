@@ -1,4 +1,4 @@
 pub mod gcd;
-pub mod invert;
+pub mod inverse;
 pub mod ops;
 pub mod solve;

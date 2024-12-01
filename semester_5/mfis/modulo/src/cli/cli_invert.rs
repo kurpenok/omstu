@@ -1,6 +1,6 @@
 use crate::{
     cli::console_read,
-    modules::{invert::invert, ops::mod_add},
+    modules::{inverse::get_inverse, ops::mod_add},
     SEPARATOR,
 };
 
@@ -17,7 +17,7 @@ pub fn cli_invert() {
     let m = m.unwrap();
     let a = mod_add(0, a.unwrap(), m);
 
-    match invert(a, m) {
+    match get_inverse(a, m) {
         Some(inverted_a) => println!("[+] Inverse number: {}", inverted_a),
         None => println!("[-] No inverse for given number!"),
     }
