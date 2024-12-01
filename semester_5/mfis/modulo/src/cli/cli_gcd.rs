@@ -10,6 +10,7 @@ pub fn cli_gcd() {
 
     if a.is_err() || b.is_err() {
         println!("[-] Incorrect values!");
+        println!("{}", SEPARATOR);
         return;
     }
 

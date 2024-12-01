@@ -8,7 +8,7 @@ static SEPARATOR: &str = "==================================================";
 
 fn main() {
     println!("{}", SEPARATOR);
-    println!("[+] Available actions:");
+    println!("[+] Available actions (0 for quit):");
     println!("[1] Find GCD");
     println!("[2] Invert by modulo");
     println!("[3] Solve comparison by modulo");
@@ -16,16 +16,13 @@ fn main() {
     println!("{}", SEPARATOR);
 
     loop {
-        let action = console_read("[>] Enter action number: ");
-
-        if action == "1" {
-            cli_gcd();
-        } else if action == "2" {
-            cli_invert();
-        } else if action == "3" {
-            cli_solve(false);
-        } else if action == "4" {
-            cli_solve(true);
+        match console_read("[>] Enter action number: ").as_str() {
+            "0" => break,
+            "1" => cli_gcd(),
+            "2" => cli_invert(),
+            "3" => cli_solve(false),
+            "4" => cli_solve(true),
+            _ => println!("[-] Incorrect value!"),
         }
     }
 }

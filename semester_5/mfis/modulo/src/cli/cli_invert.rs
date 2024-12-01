@@ -1,16 +1,24 @@
-use crate::{cli::console_read, modules::invert::invert, SEPARATOR};
+use crate::{
+    cli::console_read,
+    modules::{invert::invert, ops::mod_add},
+    SEPARATOR,
+};
 
 pub fn cli_invert() {
-    let a = console_read("[>] Enter number: ").parse::<usize>();
+    let a = console_read("[>] Enter number: ").parse::<i32>();
     let m = console_read("[>] Enter modulo: ").parse::<usize>();
 
     if a.is_err() || m.is_err() {
         println!("[-] Incorrect values!");
+        println!("{}", SEPARATOR);
         return;
     }
 
-    match invert(a.unwrap(), m.unwrap()) {
-        Some(inverted_a) => println!("[+] Inverted number: {}", inverted_a),
+    let m = m.unwrap();
+    let a = mod_add(0, a.unwrap(), m);
+
+    match invert(a, m) {
+        Some(inverted_a) => println!("[+] Inverse number: {}", inverted_a),
         None => println!("[-] No inverse for given number!"),
     }
     println!("{}", SEPARATOR);
