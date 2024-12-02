@@ -14,6 +14,7 @@ mod test {
         let e = BigInt::from(3);
         let n = BigInt::from(3127);
         let encrypted_blocks = vec![BigInt::from(276), BigInt::from(288)];
+
         assert_eq!(encrypt(&blocks, &e, &n), encrypted_blocks);
     }
 }

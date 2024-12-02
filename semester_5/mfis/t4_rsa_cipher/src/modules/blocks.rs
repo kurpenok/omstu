@@ -47,6 +47,7 @@ mod test {
     #[test]
     fn test_validate_blocks() {
         let blocks = vec!["111".to_string(), "099".to_string(), "047".to_string()];
+
         assert_eq!(validate_blocks(blocks), ["1110", "990", "47"]);
     }
 

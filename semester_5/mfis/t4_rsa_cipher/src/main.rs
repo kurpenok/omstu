@@ -1,30 +1,29 @@
-mod blocks;
-mod cli_actions;
-mod cli_args;
-mod crack;
-mod decoder;
-mod decryptor;
-mod encoder;
-mod encryptor;
-mod gcd;
-mod invert;
-mod keygen;
-mod prime;
+use cli::{
+    cli_decrypt::cli_decrypt, cli_encrypt::cli_encrypt, cli_keygen::cli_keygen, console_read,
+};
 
-use clap::Parser;
-use cli_actions::{cli_crack, cli_decrypt, cli_encrypt, cli_generate};
-use cli_args::{Cli, Commands};
+mod cli;
+mod modules;
+
+static SEPARATOR: &str = "==================================================";
+static EN_ABC: &str = "abcdefghijklmnopqrstuvwxyz";
+static RU_ABC: &str = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 
 fn main() {
-    let cli = Cli::parse();
+    println!("{}", SEPARATOR);
+    println!("[+] Available actions (0 for quit):");
+    println!("[1] Generate keys");
+    println!("[2] Encrypt text");
+    println!("[3] Decrypt text");
+    println!("{}", SEPARATOR);
 
-    match &cli.command {
-        Some(Commands::Generate(data)) => cli_generate(data),
-        Some(Commands::Encrypt(data)) => cli_encrypt(data),
-        Some(Commands::Decrypt(data)) => cli_decrypt(data),
-        Some(Commands::Crack(data)) => cli_crack(data),
-        None => {
-            println!("[-] Error reading parameters!");
+    loop {
+        match console_read("[>] Enter action number: ").as_str() {
+            "0" => break,
+            "1" => cli_keygen(),
+            "2" => cli_encrypt(),
+            "3" => cli_decrypt(),
+            _ => println!("[-] Incorrect value!"),
         }
     }
 }
