@@ -2,7 +2,7 @@ pub mod modules;
 
 mod cli;
 
-use cli::{cli_gcd::cli_gcd, cli_invert::cli_invert, cli_solve::cli_solve, console_read};
+use cli::{cli_gcd::cli_gcd, cli_inverse::cli_inverse, cli_solve::cli_solve, console_read};
 
 static SEPARATOR: &str = "==================================================";
 
@@ -19,7 +19,7 @@ fn main() {
         match console_read("[>] Enter action number: ").as_str() {
             "0" => break,
             "1" => cli_gcd(),
-            "2" => cli_invert(),
+            "2" => cli_inverse(),
             "3" => cli_solve(false),
             "4" => cli_solve(true),
             _ => println!("[-] Incorrect value!"),

@@ -16,7 +16,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn test_invert() {
+    fn test_inverse() {
         assert_eq!(get_inverse(2, 6), None);
         assert_eq!(get_inverse(8, 64), None);
 

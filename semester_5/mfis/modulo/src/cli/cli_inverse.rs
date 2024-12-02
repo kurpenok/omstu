@@ -4,7 +4,7 @@ use crate::{
     SEPARATOR,
 };
 
-pub fn cli_invert() {
+pub fn cli_inverse() {
     let a = console_read("[>] Enter number: ").parse::<i32>();
     let m = console_read("[>] Enter modulo: ").parse::<usize>();
 
