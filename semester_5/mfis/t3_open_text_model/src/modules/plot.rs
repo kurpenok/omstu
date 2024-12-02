@@ -1,6 +1,6 @@
 use plotly::{Plot, Scatter};
 
-pub fn show_entropy(entropies: &Vec<f64>, path: &Option<String>) {
+pub fn show_entropy(entropies: Vec<f64>, path: Option<String>) {
     let mut plot = Plot::new();
 
     let trace = Scatter::new((1..=entropies.len()).collect(), entropies.to_vec());

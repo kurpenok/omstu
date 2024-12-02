@@ -1,19 +1,23 @@
-mod cli_actions;
-mod cli_args;
-mod k_gram;
-mod plot;
+use cli::{cli_entropy::cli_entropy, console_read};
 
-use clap::Parser;
-use cli_actions::cli_entropy;
-use cli_args::{Cli, Commands};
+mod cli;
+mod modules;
+
+static SEPARATOR: &str = "==================================================";
+static EN_ABC: &str = "abcdefghijklmnopqrstuvwxyz";
+static RU_ABC: &str = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 
 fn main() {
-    let cli = Cli::parse();
+    println!("{}", SEPARATOR);
+    println!("[+] Available actions (0 for quit):");
+    println!("[1] Make entropy plot");
+    println!("{}", SEPARATOR);
 
-    match &cli.command {
-        Some(Commands::Entropy(data)) => cli_entropy(data),
-        None => {
-            println!("[-] Error reading parameters!");
+    loop {
+        match console_read("[>] Enter action number: ").as_str() {
+            "0" => break,
+            "1" => cli_entropy(),
+            _ => println!("[-] Incorrect value!"),
         }
     }
 }
