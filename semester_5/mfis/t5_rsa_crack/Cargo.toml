@@ -1,0 +1,10 @@
+[package]
+name = "t5_rsa_crack"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bigint = { path = "../bigint" }
+t4_rsa_cipher = { path = "../t4_rsa_cipher" }
+num-bigint = { version = "0.4.6", features = ["rand"] }
+num-traits = "0.2.19"
