@@ -27,3 +27,13 @@ pub fn find_logarithm(a: usize, b: usize, p: usize) -> usize {
 
     0
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn test_find_logarithm() {
+        assert_eq!(find_logarithm(6, 15, 109), 20);
+    }
+}
