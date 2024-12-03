@@ -37,14 +37,18 @@ pub fn mod_div(a: usize, b: usize, m: usize) -> Option<usize> {
     }
 }
 
-pub fn mod_pow(a: i32, p: u32, m: usize) -> usize {
-    let mut prod = a.pow(p);
-
-    while prod < 0 {
-        prod += m as i32;
+pub fn mod_pow(a: usize, p: usize, m: usize) -> usize {
+    if p == 0 {
+        return 1;
     }
 
-    prod as usize % m
+    let prod = mod_pow(a % m, p / 2, m) % m;
+
+    if p % 2 == 0 {
+        (prod * prod) % m
+    } else {
+        ((a % m) * ((prod * prod) % m)) % m
+    }
 }
 
 #[cfg(test)]
@@ -87,6 +91,6 @@ mod test {
     fn test_modulo_exponentiation() {
         assert_eq!(mod_pow(1, 2, 10), 1);
         assert_eq!(mod_pow(6, 8, 12), 0);
-        assert_eq!(mod_pow(-7, 7, 8), 1);
+        assert_eq!(mod_pow(7, 7, 8), 7);
     }
 }
