@@ -24,3 +24,13 @@ pub fn factorize(n: usize, a: usize, b: usize, c: usize) -> usize {
 
     0
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn test_factorize() {
+        assert_eq!(factorize(667, 3, 5, 7), 29);
+    }
+}
