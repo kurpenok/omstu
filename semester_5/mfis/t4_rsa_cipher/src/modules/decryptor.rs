@@ -1,7 +1,8 @@
+use bigint::ops::mod_pow;
 use num_bigint::BigInt;
 
 pub fn decrypt(blocks: &[BigInt], d: &BigInt, n: &BigInt) -> Vec<BigInt> {
-    blocks.iter().map(|block| block.modpow(d, n)).collect()
+    blocks.iter().map(|block| mod_pow(block, d, n)).collect()
 }
 
 #[cfg(test)]
