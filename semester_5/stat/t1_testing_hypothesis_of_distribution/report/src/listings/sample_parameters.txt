@@ -1,0 +1,6 @@
+[+] Sample average: -58.2907
+[+] Corrected sample variance: 177.9852
+[+] Mode: -58.0000
+[+] Median: -59.0000
+[+] Kurtosis: -0.0316
+[+] Skewness: 0.2517

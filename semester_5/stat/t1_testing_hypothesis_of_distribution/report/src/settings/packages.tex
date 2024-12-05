@@ -1,0 +1,70 @@
+% Языковой пакет. Альтернатива пакету babel
+\usepackage{polyglossia}
+
+% Пакет для подключения сторонних PDF
+% Возможный случай использования - добавление скана подписанного титульного листа
+\usepackage{pdfpages}
+
+% Поля по ГОСТ 2021
+\usepackage[left=3cm, right=1.5cm, top=2cm, bottom=2cm]{geometry}
+
+% Перенос при переполнении
+\emergencystretch=25pt
+
+% Локализация документа
+\setmainlanguage[babelshorthands=true, spelling=modern]{russian}
+\setotherlanguage{english}
+
+% Неизменная классика
+\setmainfont{Times New Roman}
+\setmonofont{JetBrains Mono}
+\newfontfamily \cyrillicfont{Times New Roman}
+\newfontfamily \cyrillicfonttt[Scale=0.75]{JetBrains Mono}
+
+% Пакет для стилизации содержания
+\usepackage{tocloft}
+
+% Пакет для стилизации заголовков
+\usepackage{titlesec}
+
+% Абзацные отступы
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+
+% Пакет для поддержки математических символов
+\usepackage{amsmath}
+
+% Пакеты для листингов кода
+\usepackage{minted}
+\usepackage{listings}
+\usepackage{setspace}
+\usepackage{xcolor}
+
+% Пакеты для использования графики
+\usepackage{caption}
+\usepackage{chngcntr}
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+
+% Пакет для расширенной работы с таблицами
+\usepackage{array}
+
+% Пакеты для поддержки URL-ссылок
+\usepackage{url}
+\usepackage{hyperref}
+\urlstyle{same}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=blue,
+    citecolor = black,
+    urlcolor=blue,
+}
+
+% Пакет для поддержки цитирования
+\usepackage{natbib}
+\bibliographystyle{unsrtnat}
+\setcitestyle{authoryear, open={(},close={)}}
+
+% Пакет для поддержки кавычек-ёлочек
+\usepackage{csquotes}
