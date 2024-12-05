@@ -13,12 +13,34 @@ use super::console_read;
 fn get_optimal_decrypt_combinations(abc: &Vec<char>, b: usize, d: usize) -> Vec<Vec<usize>> {
     let mut optimal_combinations = Vec::new();
 
-    let optimal_ru_abc = "оеёаитнсрвлкмдпуяызьъбгчйхжюшцщэф";
-    for a in optimal_ru_abc.chars() {
-        for c in optimal_ru_abc.chars() {
-            let a = abc.iter().position(|&symbol| symbol == a).unwrap();
-            let c = abc.iter().position(|&symbol| symbol == c).unwrap();
+    let optimal_ru_abc = "оеёаитнсрвлкмдпуяызьъбгчйхжюшцщэф"
+        .chars()
+        .collect::<Vec<char>>();
 
+    for i in 0..optimal_ru_abc.len() {
+        for j in 0..i {
+            let a = abc
+                .iter()
+                .position(|&symbol| symbol == optimal_ru_abc[j])
+                .unwrap();
+            let c = abc
+                .iter()
+                .position(|&symbol| symbol == optimal_ru_abc[i])
+                .unwrap();
+
+            match solve_comparisons_system(a, b, c, d, abc.len()) {
+                Some(solutions) => optimal_combinations.push(solutions[0].clone()),
+                None => continue,
+            }
+
+            let a = abc
+                .iter()
+                .position(|&symbol| symbol == optimal_ru_abc[i])
+                .unwrap();
+            let c = abc
+                .iter()
+                .position(|&symbol| symbol == optimal_ru_abc[j])
+                .unwrap();
             match solve_comparisons_system(a, b, c, d, abc.len()) {
                 Some(solutions) => optimal_combinations.push(solutions[0].clone()),
                 None => continue,
