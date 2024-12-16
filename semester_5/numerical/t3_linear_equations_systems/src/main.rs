@@ -1,3 +1,3 @@
-mod gauss;
+mod matrix;
 
 fn main() {}
