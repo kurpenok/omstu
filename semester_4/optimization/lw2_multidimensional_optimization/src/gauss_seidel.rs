@@ -1,38 +1,58 @@
-fn optimize<F>(f: F, i: usize, x: [f64; 2], eps: f64) -> f64
+use crate::golden_ratio::golden_ratio_search;
+
+pub fn gauss_seidel_search<F>(f: F, x_0: Vec<f64>, eps: f64, max_iter: usize) -> (Vec<f64>, f64)
 where
-    F: Fn([f64; 2]) -> f64,
+    F: Fn(&Vec<f64>) -> f64,
 {
-    let mut x = x;
-    let mut x_left = x;
-    let mut x_right = x;
+    // Определяем размерность задачи (число координат)
+    // Инициализируем вектор x начальными значениями
+    let mut x = x_0.clone();
 
-    x_left[i] -= eps;
-    x_right[i] += eps;
+    // Основной цикл по итерациям метода, ограничен max_iter итерациями
+    for _ in 0..max_iter {
+        // Сохраняем текущее состояние вектора x для контроля сходимости
+        let x_old = x.clone();
 
-    while !(f(x_left) > f(x) && f(x) < f(x_right)) {
-        if f(x_left) < f(x) && f(x) < f(x_right) {
-            x_right = x;
-            x = x_left;
-            x_left[i] -= eps;
-        } else if f(x_left) > f(x) && f(x) > f(x_right) {
-            x_left = x;
-            x = x_right;
-            x_right[i] += eps;
+        // Перебираем все координаты поочередно
+        for i in 0..x_0.len() {
+            // Определяем функцию одномерной оптимизации по i-й координате
+            // Эта замыкание f1d изменяет только i-ю координату, остальные остаются фиксированными
+            let f1d = |alpha: f64| {
+                // Клонируем текущий вектор x в x_temp
+                let mut x_temp = x.clone();
+
+                // Обновляем i-ю координату значением alpha
+                x_temp[i] = alpha;
+
+                // Возвращаем значение исходной функции func для обновленного вектора
+                f(&x_temp)
+            };
+
+            // Задаем начальный поисковый интервал для оптимизации i-й координаты
+            // Берем фиксированный шаг 1.0 вокруг текущего значения x[i]
+            let a_i = x[i] - 1.0;
+            let b_i = x[i] + 1.0;
+
+            // Находим оптимальное значение координаты i с помощью метода золотого сечения
+            let (alpha_min, _) = golden_ratio_search(f1d, a_i, b_i, eps);
+
+            // Обновляем координату x[i] найденным значением alpha_min
+            x[i] = alpha_min;
+        }
+
+        // Вычисляем суммарное изменение между итерациями для оценки сходимости
+        let diff: f64 = x
+            .iter()
+            .zip(x_old.iter())
+            .map(|(new, old)| (new - old).abs())
+            .sum();
+
+        // Если суммарное изменение меньше порога eps, алгоритм завершает работу
+        if diff < eps {
+            break;
         }
     }
 
-    x[i]
-}
-
-pub fn gauss_seidel_search<F>(f: F, x: [f64; 2], eps: f64) -> ([f64; 2], f64)
-where
-    F: Fn([f64; 2]) -> f64,
-{
-    let mut x = x;
-
-    for i in 0..x.len() {
-        x[i] = optimize(&f, i, x, eps);
-    }
-
-    (x, f(x))
+    // Возвращаем найденный вектор минимума
+    (x.clone(), f(&x))
 }
