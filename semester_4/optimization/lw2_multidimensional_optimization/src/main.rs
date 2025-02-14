@@ -1,7 +1,9 @@
 mod gauss_seidel;
 mod golden_ratio;
+mod powell;
 
 use gauss_seidel::gauss_seidel_search;
+use powell::powell;
 
 fn f(x: &Vec<f64>) -> f64 {
     let a: f64 = 3.0;
@@ -19,4 +21,7 @@ fn main() {
 
     let (x, y) = gauss_seidel_search(f, vec![0.0, 0.0], eps, max_iter);
     println!("[+] Gauss-Seidel search: ({:.2?}, {:.2})", x, y);
+
+    let (x, y) = powell(f, vec![0.0, 0.0], eps, max_iter);
+    println!("[+] Powell search: ({:.2?}, {:.2})", x, y);
 }
