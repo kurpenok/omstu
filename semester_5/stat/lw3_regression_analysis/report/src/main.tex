@@ -1,0 +1,27 @@
+% Аrticle использует только шрифты с размером 10-12pt
+% Extarticle позволяет использть шрифты любых размеров
+\documentclass[14pt, a4paper]{extarticle}
+
+% Подключение файла с пакетами
+\input{settings/packages}
+
+% Подключение кастомных команд
+\input{settings/commands}
+
+% Подключение макросов
+\input{settings/macros}
+
+\begin{document}
+
+% Титульный лист
+\include{content/p1_title}
+% Раскомментировать при наличии скана подписанного титульного листа
+% \includepdf[pages=-]{pdf/signed_title.pdf}
+
+% Подключение форматирования
+\input{settings/format}
+
+% Основной материал
+\include{content/p2_content}
+
+\end{document}
